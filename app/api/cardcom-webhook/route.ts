@@ -33,9 +33,28 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ ok: true });
     }
 
-    // Use PUT to update existing contact and add to paid list
+    // Step 1: Get contact ID by email
+    const getRes = await fetch(
+      `https://rest.smoove.io/v1/Contacts/${encodeURIComponent(email)}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${SMOOVE_API_KEY}`,
+        },
+      }
+    );
+    const contact = await getRes.json();
+    console.log("Smoove GET contact:", JSON.stringify(contact));
+
+    const contactId = contact?.id;
+    if (!contactId) {
+      console.error("Could not find contact ID for email:", email);
+      return NextResponse.json({ ok: true });
+    }
+
+    // Step 2: PUT /v1/Contacts/{id} to add to paid list
     const res = await fetch(
-      `https://rest.smoove.io/v1/Contacts?email=${encodeURIComponent(email)}`,
+      `https://rest.smoove.io/v1/Contacts/${contactId}`,
       {
         method: "PUT",
         headers: {
