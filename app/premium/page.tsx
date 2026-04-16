@@ -172,6 +172,7 @@ export default function PremiumPage() {
         body: JSON.stringify(formData),
       });
       if (!res.ok) throw new Error();
+      localStorage.setItem("registeredEmail", formData.email);
       setSubmitted(true);
       // Brief pause so the user sees the success message, then redirect to payment
       setTimeout(() => {

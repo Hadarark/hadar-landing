@@ -20,6 +20,7 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify({
         email,
         lists_ToSubscribe: [SMOOVE_PAID_LIST_ID],
+        lists_ToUnSubscribe: [1129489],
       }),
     });
     const result = await res.text();
