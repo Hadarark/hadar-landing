@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&family=Rubik:wght@400;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  direction: rtl;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Assistant", "Rubik", Arial, sans-serif;
+  background-color: #F5F4F2;
+  color: #2C3E5A;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+input,
+textarea,
+select {
+  direction: rtl;
+  text-align: right;
+}
+
+input[type="tel"] {
+  direction: ltr;
+  text-align: right;
+}
