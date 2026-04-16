@@ -43,6 +43,7 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify({
         email,
         lists_ToSubscribe: [SMOOVE_PAID_LIST_ID],
+        forceUpdate: true,
       }),
     });
 
