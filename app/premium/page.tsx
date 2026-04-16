@@ -115,7 +115,7 @@ function Label({ text }: { text: string }) {
 function CTAButton({ text, size = "lg" }: { text: string; size?: "sm" | "lg" }) {
   return (
     <motion.a
-      href="https://lp.smoove.io/igww"
+      href="#register"
       className={`group relative inline-flex items-center justify-center gap-3 bg-[#A0522D] text-white font-bold overflow-hidden cursor-pointer ${
         size === "lg" ? "px-10 py-5 text-xl w-full lg:w-auto" : "px-7 py-4 text-lg"
       }`}
@@ -166,27 +166,20 @@ export default function PremiumPage() {
     setLoading(true);
     setError("");
     try {
-      const [firstName, ...rest] = formData.name.trim().split(" ");
-      const lastName = rest.join(" ") || "-";
-
-      const res = await fetch("https://rest.smoove.io/v1/Contacts", {
+      const res = await fetch("/api/register", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer e052d9e6-fc9b-4133-b284-3b22d6af1696",
-        },
-        body: JSON.stringify({
-          email: formData.email,
-          firstName,
-          lastName,
-          cellPhone: formData.phone,
-          listId: 1129489,
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
       });
       if (!res.ok) throw new Error();
       setSubmitted(true);
+      // Brief pause so the user sees the success message, then redirect to payment
+      setTimeout(() => {
+        window.location.href =
+          "https://secure.cardcom.solutions/EA/EA5/lpskTbNqVUGzncHXQmNZA/PaymentSP";
+      }, 1500);
     } catch {
-      setError("משהו השתבש, נסי שוב או שלחי וואטסאפ ישירות.");
+      setError("משהו השתבש, נסי שוב.");
     } finally {
       setLoading(false);
     }
@@ -953,20 +946,93 @@ export default function PremiumPage() {
             שרייני לי מקום במעבדה
           </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="space-y-4"
-          >
-            <CTAButton text="אני בפנים, שרייני לי מקום" />
-            <p className="text-[#2C3E5A]/30 text-sm">
-              10 מקומות בלבד · המחיר הזה לא יחזור
-            </p>
-          </motion.div>
+          <AnimatePresence mode="wait">
+            {submitted ? (
+              <motion.div
+                key="success"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="bg-white border border-[#6B7A5A]/30 p-8 text-center"
+              >
+                <p className="text-4xl mb-4">🎉</p>
+                <p className="text-2xl font-bold text-[#2C3E5A] mb-2">נרשמת בהצלחה!</p>
+                <p className="text-[#2C3E5A]/60 text-lg mb-6">ממשיכים לתשלום...</p>
+              </motion.div>
+            ) : (
+              <motion.form
+                key="form"
+                onSubmit={handleSubmit}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="space-y-4 text-right"
+              >
+                <input
+                  type="text"
+                  placeholder="שם מלא"
+                  required
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  className="w-full border border-[#2C3E5A]/20 bg-white px-5 py-4 text-[#2C3E5A] text-lg focus:outline-none focus:border-[#A0522D] transition-colors"
+                  dir="rtl"
+                />
+                <input
+                  type="email"
+                  placeholder="כתובת מייל"
+                  required
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="w-full border border-[#2C3E5A]/20 bg-white px-5 py-4 text-[#2C3E5A] text-lg focus:outline-none focus:border-[#A0522D] transition-colors"
+                  dir="ltr"
+                />
+                <input
+                  type="tel"
+                  placeholder="מספר נייד"
+                  required
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  className="w-full border border-[#2C3E5A]/20 bg-white px-5 py-4 text-[#2C3E5A] text-lg focus:outline-none focus:border-[#A0522D] transition-colors"
+                  dir="ltr"
+                />
 
-          {/* hidden for linter */}
+                {error && (
+                  <p className="text-red-600 text-sm">{error}</p>
+                )}
+
+                <motion.button
+                  type="submit"
+                  disabled={loading}
+                  className="group relative w-full inline-flex items-center justify-center gap-3 bg-[#A0522D] text-white font-bold overflow-hidden px-10 py-5 text-xl disabled:opacity-60"
+                  whileHover={{ scale: loading ? 1 : 1.02 }}
+                  whileTap={{ scale: loading ? 1 : 0.97 }}
+                >
+                  <motion.span
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"
+                    initial={{ x: "-100%" }}
+                    whileHover={{ x: "200%" }}
+                    transition={{ duration: 0.6 }}
+                  />
+                  <span className="relative">
+                    {loading ? "שולחת..." : "הדר, אני בפנים! שרייני לי מקום"}
+                  </span>
+                  {!loading && (
+                    <motion.span
+                      className="relative"
+                      animate={{ x: [0, 4, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                    >
+                      <Icon.arrow />
+                    </motion.span>
+                  )}
+                </motion.button>
+
+                <p className="text-[#2C3E5A]/30 text-sm">
+                  10 מקומות בלבד · המחיר הזה לא יחזור
+                </p>
+              </motion.form>
+            )}
+          </AnimatePresence>
         </div>
       </section>
 

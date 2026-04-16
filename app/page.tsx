@@ -160,27 +160,19 @@ export default function Page() {
     setLoading(true);
     setError("");
     try {
-      const [firstName, ...rest] = formData.name.trim().split(" ");
-      const lastName = rest.join(" ") || "-";
-
-      const res = await fetch("https://rest.smoove.io/v1/Contacts", {
+      const res = await fetch("/api/register", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer e052d9e6-fc9b-4133-b284-3b22d6af1696",
-        },
-        body: JSON.stringify({
-          email: formData.email,
-          firstName,
-          lastName,
-          cellPhone: formData.phone,
-          listId: 1129489,
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
       });
       if (!res.ok) throw new Error();
       setSubmitted(true);
+      setTimeout(() => {
+        window.location.href =
+          "https://secure.cardcom.solutions/EA/EA5/lpskTbNqVUGzncHXQmNZA/PaymentSP";
+      }, 1500);
     } catch {
-      setError("משהו השתבש, נסי שוב או שלחי וואטסאפ ישירות.");
+      setError("משהו השתבש, נסי שוב.");
     } finally {
       setLoading(false);
     }
