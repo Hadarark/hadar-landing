@@ -146,6 +146,8 @@ function CTAButton({ text, size = "lg" }: { text: string; size?: "sm" | "lg" }) 
 export default function PremiumPage() {
   const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [activeWeek, setActiveWeek] = useState(0);
 
   const heroRef = useRef(null);
@@ -159,9 +161,23 @@ export default function PremiumPage() {
   const count4 = useCounter(4, statsInView);
   const count10 = useCounter(10, statsInView);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setError("");
+    try {
+      const res = await fetch("/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      if (!res.ok) throw new Error();
+      setSubmitted(true);
+    } catch {
+      setError("משהו השתבש, נסי שוב או שלחי וואטסאפ ישירות.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   const weeks = [
@@ -973,9 +989,10 @@ export default function PremiumPage() {
 
                 <motion.button
                   type="submit"
-                  className="group relative w-full bg-[#A0522D] text-white font-bold py-5 text-xl overflow-hidden"
-                  whileHover={{ scale: 1.01 }}
-                  whileTap={{ scale: 0.98 }}
+                  disabled={loading}
+                  className="group relative w-full bg-[#A0522D] text-white font-bold py-5 text-xl overflow-hidden disabled:opacity-70"
+                  whileHover={{ scale: loading ? 1 : 1.01 }}
+                  whileTap={{ scale: loading ? 1 : 0.98 }}
                 >
                   <motion.span
                     className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"
@@ -984,10 +1001,14 @@ export default function PremiumPage() {
                     transition={{ duration: 0.6 }}
                   />
                   <span className="relative flex items-center justify-center gap-3">
-                    הדר, אני בפנים! שרייני לי מקום
-                    <Icon.arrow />
+                    {loading ? "שולחת..." : "הדר, אני בפנים! שרייני לי מקום"}
+                    {!loading && <Icon.arrow />}
                   </span>
                 </motion.button>
+
+                {error && (
+                  <p className="text-red-500 text-sm text-center">{error}</p>
+                )}
 
                 <p className="text-[#2C3E5A]/30 text-sm text-center">
                   10 מקומות בלבד. המחיר הזה לא יחזור.

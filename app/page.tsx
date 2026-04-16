@@ -152,10 +152,26 @@ function CTAButton({ text, small = false }: { text: string; small?: boolean }) {
 export default function Page() {
   const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setError("");
+    try {
+      const res = await fetch("/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      if (!res.ok) throw new Error();
+      setSubmitted(true);
+    } catch {
+      setError("משהו השתבש, נסי שוב או שלחי וואטסאפ ישירות.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -703,12 +719,17 @@ export default function Page() {
 
                 <motion.button
                   type="submit"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.97 }}
-                  className="w-full bg-[#A0522D] text-white font-bold py-5 text-xl transition-shadow hover:shadow-[0_4px_24px_rgba(160,82,45,0.35)]"
+                  disabled={loading}
+                  whileHover={{ scale: loading ? 1 : 1.02 }}
+                  whileTap={{ scale: loading ? 1 : 0.97 }}
+                  className="w-full bg-[#A0522D] text-white font-bold py-5 text-xl transition-shadow hover:shadow-[0_4px_24px_rgba(160,82,45,0.35)] disabled:opacity-70"
                 >
-                  הדר, אני בפנים! שרייני לי מקום
+                  {loading ? "שולחת..." : "הדר, אני בפנים! שרייני לי מקום"}
                 </motion.button>
+
+                {error && (
+                  <p className="text-red-500 text-sm text-center">{error}</p>
+                )}
 
                 <p className="text-navy/40 text-sm text-center">
                   10 מקומות בלבד. המחיר הזה לא יחזור.
