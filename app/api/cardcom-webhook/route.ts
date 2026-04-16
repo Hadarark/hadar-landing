@@ -33,59 +33,22 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ ok: true });
     }
 
-    // Step 1: Search contact by email to get ID
-    const searchRes = await fetch(
-      `https://rest.smoove.io/v1/Contacts?email=${encodeURIComponent(email)}`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${SMOOVE_API_KEY}`,
-        },
-      }
-    );
-    const searchText = await searchRes.text();
-    console.log("Smoove search status:", searchRes.status);
-    console.log("Smoove search body:", searchText);
-
-    let contactId: number | null = null;
-    try {
-      const contacts = JSON.parse(searchText);
-      // Response may be array or single object
-      if (Array.isArray(contacts) && contacts.length > 0) {
-        contactId = contacts[0].id;
-      } else if (contacts?.id) {
-        contactId = contacts.id;
-      }
-    } catch {
-      console.error("Could not parse search response");
-    }
-
-    console.log("Found contact ID:", contactId);
-
-    if (!contactId) {
-      console.error("Could not find contact ID for email:", email);
-      return NextResponse.json({ ok: true });
-    }
-
-    // Step 2: PUT /v1/Contacts/{id} to add to paid list
-    const res = await fetch(
-      `https://rest.smoove.io/v1/Contacts/${contactId}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${SMOOVE_API_KEY}`,
-        },
-        body: JSON.stringify({
-          email,
-          lists_ToSubscribe: [SMOOVE_PAID_LIST_ID],
-        }),
-      }
-    );
+    // Use BulkImport which handles existing contacts gracefully
+    const res = await fetch("https://rest.smoove.io/v1/Contacts_BulkImport", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${SMOOVE_API_KEY}`,
+      },
+      body: JSON.stringify({
+        lists_ToSubscribe: [SMOOVE_PAID_LIST_ID],
+        contacts: [{ email }],
+      }),
+    });
 
     const result = await res.text();
-    console.log("Smoove paid list update status:", res.status);
-    console.log("Smoove paid list update body:", result);
+    console.log("Smoove bulk import status:", res.status);
+    console.log("Smoove bulk import body:", result);
 
     return NextResponse.json({ ok: true });
   } catch (err) {
