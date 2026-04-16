@@ -14,14 +14,11 @@ export async function POST(req: NextRequest) {
   const lastName = rest.join(" ") || "-";
 
   const body = {
-    contact: {
-      email,
-      firstName,
-      lastName,
-      phone,
-    },
+    email,
+    firstName,
+    lastName,
+    cellPhone: phone,
     listId: SMOOVE_LIST_ID,
-    overrideExisting: true,
   };
 
   const res = await fetch("https://rest.smoove.io/v1/Contacts", {
