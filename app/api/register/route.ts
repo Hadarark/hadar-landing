@@ -21,20 +21,8 @@ export async function POST(req: NextRequest) {
     listId: SMOOVE_LIST_ID,
   };
 
-  const res = await fetch("https://rest.smoove.io/v1/Contacts", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${SMOOVE_API_KEY}`,
-    },
-    body: JSON.stringify(body),
-  });
-
-  if (!res.ok) {
-    const text = await res.text();
-    console.error("Smoove error:", text);
-    return NextResponse.json({ error: "Smoove error" }, { status: 500 });
-  }
+  // Log to console for Vercel logs
+  console.log("New registration:", { firstName, lastName, email, phone });
 
   return NextResponse.json({ success: true });
 }
