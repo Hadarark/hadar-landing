@@ -160,10 +160,22 @@ export default function Page() {
     setLoading(true);
     setError("");
     try {
-      const res = await fetch("/api/register", {
+      const [firstName, ...rest] = formData.name.trim().split(" ");
+      const lastName = rest.join(" ") || "-";
+
+      const res = await fetch("https://rest.smoove.io/v1/Contacts", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer e052d9e6-fc9b-4133-b284-3b22d6af1696",
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          firstName,
+          lastName,
+          cellPhone: formData.phone,
+          listId: 1129489,
+        }),
       });
       if (!res.ok) throw new Error();
       setSubmitted(true);
