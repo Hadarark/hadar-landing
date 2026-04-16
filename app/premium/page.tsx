@@ -172,7 +172,9 @@ export default function PremiumPage() {
         body: JSON.stringify(formData),
       });
       if (!res.ok) throw new Error();
+      const data = await res.json();
       localStorage.setItem("registeredEmail", formData.email);
+      if (data?.smooveId) localStorage.setItem("smooveId", String(data.smooveId));
       setSubmitted(true);
       // Brief pause so the user sees the success message, then redirect to payment
       setTimeout(() => {

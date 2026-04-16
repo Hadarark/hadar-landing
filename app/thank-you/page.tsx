@@ -6,13 +6,15 @@ import { useEffect } from "react";
 export default function ThankYouPage() {
   useEffect(() => {
     const email = localStorage.getItem("registeredEmail");
-    if (email) {
+    const smooveId = localStorage.getItem("smooveId");
+    if (email || smooveId) {
       fetch("/api/add-paid", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, smooveId }),
       }).finally(() => {
         localStorage.removeItem("registeredEmail");
+        localStorage.removeItem("smooveId");
       });
     }
   }, []);

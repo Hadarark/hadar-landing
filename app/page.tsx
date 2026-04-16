@@ -166,7 +166,9 @@ export default function Page() {
         body: JSON.stringify(formData),
       });
       if (!res.ok) throw new Error();
+      const data = await res.json();
       localStorage.setItem("registeredEmail", formData.email);
+      if (data?.smooveId) localStorage.setItem("smooveId", String(data.smooveId));
       setSubmitted(true);
       setTimeout(() => {
         window.location.href =

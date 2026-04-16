@@ -31,9 +31,11 @@ export async function POST(req: NextRequest) {
       }),
     });
 
-    const text = await res.text();
-    console.log("Smoove response status:", res.status);
-    console.log("Smoove response body:", text);
+    const data = await res.json();
+    console.log("Smoove response status:", res.status, "id:", data?.id);
+    if (data?.id) {
+      return NextResponse.json({ success: true, smooveId: data.id });
+    }
   } catch (err) {
     console.error("Smoove error:", err);
   }
