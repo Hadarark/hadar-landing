@@ -1,8 +1,22 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 export default function ThankYouPage() {
+  useEffect(() => {
+    const email = localStorage.getItem("registeredEmail");
+    if (email) {
+      fetch("/api/add-paid", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      }).finally(() => {
+        localStorage.removeItem("registeredEmail");
+      });
+    }
+  }, []);
+
   return (
     <main
       dir="rtl"

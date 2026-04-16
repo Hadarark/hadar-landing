@@ -166,6 +166,7 @@ export default function Page() {
         body: JSON.stringify(formData),
       });
       if (!res.ok) throw new Error();
+      localStorage.setItem("registeredEmail", formData.email);
       setSubmitted(true);
       setTimeout(() => {
         window.location.href =
