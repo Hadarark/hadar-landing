@@ -115,7 +115,7 @@ function Label({ text }: { text: string }) {
 function CTAButton({ text, size = "lg" }: { text: string; size?: "sm" | "lg" }) {
   return (
     <motion.a
-      href="#register"
+      href="https://lp.smoove.io/igww"
       className={`group relative inline-flex items-center justify-center gap-3 bg-[#A0522D] text-white font-bold overflow-hidden cursor-pointer ${
         size === "lg" ? "px-10 py-5 text-xl w-full lg:w-auto" : "px-7 py-4 text-lg"
       }`}
@@ -933,10 +933,10 @@ export default function PremiumPage() {
 
       {/* ── REGISTER ─────────────────────────────────────────────────────── */}
       <section id="register" className="py-20 lg:py-32 px-6 lg:px-16 bg-[#F5F4F2]">
-        <div className="max-w-xl mx-auto">
+        <div className="max-w-xl mx-auto text-center">
           <Label text="הרשמה" />
           <motion.h2
-            className="text-4xl lg:text-5xl font-extrabold text-[#2C3E5A] mb-2"
+            className="text-4xl lg:text-5xl font-extrabold text-[#2C3E5A] mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -944,7 +944,7 @@ export default function PremiumPage() {
             הדר, אני בפנים!
           </motion.h2>
           <motion.p
-            className="text-[#2C3E5A]/50 text-lg mb-10"
+            className="text-[#2C3E5A]/50 text-xl mb-10"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -953,92 +953,20 @@ export default function PremiumPage() {
             שרייני לי מקום במעבדה
           </motion.p>
 
-          <AnimatePresence mode="wait">
-            {submitted ? (
-              <motion.div
-                key="success"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="bg-[#2C3E5A] text-white p-10 text-center"
-              >
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ type: "spring", stiffness: 300, delay: 0.2 }}
-                  className="w-16 h-16 bg-[#A0522D] flex items-center justify-center mx-auto mb-4"
-                >
-                  <Icon.check />
-                </motion.div>
-                <p className="text-3xl font-bold mb-2">קיבלתי!</p>
-                <p className="text-white/60 text-lg mb-6">השלב האחרון — תשלום להבטחת המקום שלך.</p>
-                <motion.a
-                  href="https://secure.cardcom.solutions/EA/EA5/lpskTbNqVUGzncHXQmNZA/PaymentSP"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block bg-[#A0522D] text-white font-bold px-10 py-4 text-xl hover:opacity-90 transition-opacity"
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                >
-                  לתשלום מאובטח ←
-                </motion.a>
-                <p className="text-white/30 text-sm mt-4">299 ש"ח · קארדקום מאובטח</p>
-              </motion.div>
-            ) : (
-              <motion.form
-                key="form"
-                onSubmit={handleSubmit}
-                className="space-y-4"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-              >
-                {[
-                  { key: "name", placeholder: "שם מלא", type: "text" },
-                  { key: "email", placeholder: "מייל", type: "email" },
-                  { key: "phone", placeholder: "נייד", type: "tel" },
-                ].map((field) => (
-                  <input
-                    key={field.key}
-                    type={field.type}
-                    placeholder={field.placeholder}
-                    required
-                    dir={field.type === "tel" ? "ltr" : "rtl"}
-                    value={formData[field.key as keyof typeof formData]}
-                    onChange={(e) => setFormData({ ...formData, [field.key]: e.target.value })}
-                    className="w-full border border-[#2C3E5A]/15 bg-white px-5 py-4 text-[#2C3E5A] text-lg placeholder:text-[#2C3E5A]/35 focus:border-[#A0522D] focus:outline-none transition-colors"
-                  />
-                ))}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="space-y-4"
+          >
+            <CTAButton text="אני בפנים, שרייני לי מקום" />
+            <p className="text-[#2C3E5A]/30 text-sm">
+              10 מקומות בלבד · המחיר הזה לא יחזור
+            </p>
+          </motion.div>
 
-                <motion.button
-                  type="submit"
-                  disabled={loading}
-                  className="group relative w-full bg-[#A0522D] text-white font-bold py-5 text-xl overflow-hidden disabled:opacity-70"
-                  whileHover={{ scale: loading ? 1 : 1.01 }}
-                  whileTap={{ scale: loading ? 1 : 0.98 }}
-                >
-                  <motion.span
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"
-                    initial={{ x: "-100%" }}
-                    whileHover={{ x: "200%" }}
-                    transition={{ duration: 0.6 }}
-                  />
-                  <span className="relative flex items-center justify-center gap-3">
-                    {loading ? "שולחת..." : "הדר, אני בפנים! שרייני לי מקום"}
-                    {!loading && <Icon.arrow />}
-                  </span>
-                </motion.button>
-
-                {error && (
-                  <p className="text-red-500 text-sm text-center">{error}</p>
-                )}
-
-                <p className="text-[#2C3E5A]/30 text-sm text-center">
-                  10 מקומות בלבד. המחיר הזה לא יחזור.
-                </p>
-              </motion.form>
-            )}
-          </AnimatePresence>
+          {/* hidden for linter */}
         </div>
       </section>
 
