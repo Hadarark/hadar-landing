@@ -33,9 +33,9 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ ok: true });
     }
 
-    // Step 1: Get contact ID by email
-    const getRes = await fetch(
-      `https://rest.smoove.io/v1/Contacts/${encodeURIComponent(email)}`,
+    // Step 1: Search contact by email to get ID
+    const searchRes = await fetch(
+      `https://rest.smoove.io/v1/Contacts?email=${encodeURIComponent(email)}`,
       {
         method: "GET",
         headers: {
@@ -43,10 +43,25 @@ export async function POST(req: NextRequest) {
         },
       }
     );
-    const contact = await getRes.json();
-    console.log("Smoove GET contact:", JSON.stringify(contact));
+    const searchText = await searchRes.text();
+    console.log("Smoove search status:", searchRes.status);
+    console.log("Smoove search body:", searchText);
 
-    const contactId = contact?.id;
+    let contactId: number | null = null;
+    try {
+      const contacts = JSON.parse(searchText);
+      // Response may be array or single object
+      if (Array.isArray(contacts) && contacts.length > 0) {
+        contactId = contacts[0].id;
+      } else if (contacts?.id) {
+        contactId = contacts.id;
+      }
+    } catch {
+      console.error("Could not parse search response");
+    }
+
+    console.log("Found contact ID:", contactId);
+
     if (!contactId) {
       console.error("Could not find contact ID for email:", email);
       return NextResponse.json({ ok: true });
