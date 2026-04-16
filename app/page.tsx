@@ -683,9 +683,18 @@ export default function Page() {
             <Reveal>
               <div className="bg-[#2C3E5A] text-white p-8 text-center">
                 <p className="text-3xl font-bold mb-3">קיבלתי!</p>
-                <p className="text-white/70 text-lg">
-                  אחזור אלייך בהקדם לאישור המקום.
+                <p className="text-white/70 text-lg mb-6">
+                  השלב האחרון — תשלום להבטחת המקום שלך.
                 </p>
+                <a
+                  href="https://secure.cardcom.solutions/EA/EA5/lpskTbNqVUGzncHXQmNZA/PaymentSP"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-[#A0522D] text-white font-bold px-10 py-4 text-xl hover:opacity-90 transition-opacity"
+                >
+                  לתשלום מאובטח ←
+                </a>
+                <p className="text-white/30 text-sm mt-4">299 ש"ח · קארדקום מאובטח</p>
               </div>
             </Reveal>
           ) : (

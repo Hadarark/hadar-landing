@@ -958,7 +958,18 @@ export default function PremiumPage() {
                   <Icon.check />
                 </motion.div>
                 <p className="text-3xl font-bold mb-2">קיבלתי!</p>
-                <p className="text-white/60 text-lg">אחזור אלייך בהקדם לאישור המקום.</p>
+                <p className="text-white/60 text-lg mb-6">השלב האחרון — תשלום להבטחת המקום שלך.</p>
+                <motion.a
+                  href="https://secure.cardcom.solutions/EA/EA5/lpskTbNqVUGzncHXQmNZA/PaymentSP"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-[#A0522D] text-white font-bold px-10 py-4 text-xl hover:opacity-90 transition-opacity"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                >
+                  לתשלום מאובטח ←
+                </motion.a>
+                <p className="text-white/30 text-sm mt-4">299 ש"ח · קארדקום מאובטח</p>
               </motion.div>
             ) : (
               <motion.form
