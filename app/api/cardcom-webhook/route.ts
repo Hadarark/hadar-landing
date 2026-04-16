@@ -33,22 +33,22 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ ok: true });
     }
 
-    // Use BulkImport which handles existing contacts gracefully
-    const res = await fetch("https://rest.smoove.io/v1/Contacts_BulkImport", {
+    // Add contact to paid list
+    const res = await fetch("https://rest.smoove.io/v1/Contacts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${SMOOVE_API_KEY}`,
       },
       body: JSON.stringify({
+        email,
         lists_ToSubscribe: [SMOOVE_PAID_LIST_ID],
-        contacts: [{ email }],
       }),
     });
 
     const result = await res.text();
-    console.log("Smoove bulk import status:", res.status);
-    console.log("Smoove bulk import body:", result);
+    console.log("Smoove status:", res.status);
+    console.log("Smoove body:", result);
 
     return NextResponse.json({ ok: true });
   } catch (err) {
