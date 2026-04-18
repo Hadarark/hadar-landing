@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
       });
       const result = await res.json();
       console.log("PUT contact to paid list:", res.status, result?.lists_Linked);
-      return NextResponse.json({ ok: true });
+      return NextResponse.json({ ok: res.ok, status: res.status, lists: result?.lists_Linked, error: result?.message });
     }
 
     // Fallback: try POST for new contacts (in case smooveId wasn't saved)
