@@ -7,22 +7,15 @@ export default function ThankYouPage() {
   useEffect(() => {
     const email = localStorage.getItem("registeredEmail");
     const smooveId = localStorage.getItem("smooveId");
-    console.log("DEBUG thank-you: email=", email, "smooveId=", smooveId);
     if (email || smooveId) {
       fetch("/api/add-paid", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, smooveId }),
-      })
-        .then((r) => r.json())
-        .then((data) => console.log("DEBUG add-paid response:", data))
-        .catch((err) => console.error("DEBUG add-paid error:", err))
-        .finally(() => {
-          localStorage.removeItem("registeredEmail");
-          localStorage.removeItem("smooveId");
-        });
-    } else {
-      console.log("DEBUG: localStorage ריק — לא נשלח /api/add-paid");
+      }).finally(() => {
+        localStorage.removeItem("registeredEmail");
+        localStorage.removeItem("smooveId");
+      });
     }
   }, []);
 
