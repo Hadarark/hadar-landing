@@ -67,7 +67,17 @@ export async function POST(req: NextRequest) {
         lists_ToSubscribe: [SMOOVE_PAID_LIST_ID],
       }),
     });
-    const result = await res.json();
+    // Smoove may return plain text for existing contacts — avoid JSON parse throw
+    const text = await res.text();
+    let result: { id?: number; lists_Linked?: unknown } | null = null;
+    try { result = JSON.parse(text); } catch { /* plain text response */ }
+
+    if (text.includes("already exists")) {
+      // Contact is a global contact (not in any list) — requires manual action in Smoove
+      console.warn("Global contact (not in any list), cannot move to paid list automatically:", email);
+      return NextResponse.json({ ok: false, error: "contact_global", message: "Contact exists but is not in any list. Add manually in Smoove." });
+    }
+
     console.log("POST new contact to paid list:", res.status, result?.id);
     return NextResponse.json({ ok: res.ok, status: res.status, lists: result?.lists_Linked });
   } catch (err) {

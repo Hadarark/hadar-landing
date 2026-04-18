@@ -31,14 +31,22 @@ export async function POST(req: NextRequest) {
       }),
     });
 
-    const data = await res.json();
+    // Smoove may return plain text for "already exists" — use text() to avoid JSON parse throw
+    const text = await res.text();
+    let data: { id?: number; message?: string } | null = null;
+    try { data = JSON.parse(text); } catch { /* plain text response */ }
+
     console.log("Smoove response status:", res.status, "id:", data?.id);
     if (data?.id) {
       return NextResponse.json({ success: true, smooveId: data.id });
     }
 
     // Contact already exists — find by email via GET /v1/Contacts
-    if (res.status === 400 && data?.message?.includes("already exists")) {
+    const alreadyExists =
+      (data?.message?.includes("already exists")) ||
+      text.includes("already exists");
+
+    if (res.status === 400 && alreadyExists) {
       const allRes = await fetch("https://rest.smoove.io/v1/Contacts", {
         headers: { Authorization: `Bearer ${SMOOVE_API_KEY}` },
       });
@@ -55,6 +63,8 @@ export async function POST(req: NextRequest) {
           });
           return NextResponse.json({ success: true, smooveId: existing.id });
         }
+        // Contact is a global contact (not in any list) — can't find via API
+        console.warn("Contact exists globally (not in list), no ID available:", email);
       }
     }
   } catch (err) {
