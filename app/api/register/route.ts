@@ -37,14 +37,16 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ success: true, smooveId: data.id });
     }
 
-    // Contact already exists — try to update via PUT with email search
+    // Contact already exists — find by email via GET /v1/Contacts
     if (res.status === 400 && data?.message?.includes("already exists")) {
-      const searchRes = await fetch(
-        `https://rest.smoove.io/v1/Contacts/GetByExternalId?externalId=${encodeURIComponent(email)}`,
-        { headers: { Authorization: `Bearer ${SMOOVE_API_KEY}` } }
-      );
-      if (searchRes.ok) {
-        const existing = await searchRes.json();
+      const allRes = await fetch("https://rest.smoove.io/v1/Contacts", {
+        headers: { Authorization: `Bearer ${SMOOVE_API_KEY}` },
+      });
+      if (allRes.ok) {
+        const contacts: { id: number; email: string }[] = await allRes.json();
+        const existing = contacts.find(
+          (c) => c.email?.toLowerCase() === email.toLowerCase()
+        );
         if (existing?.id) {
           await fetch(`https://rest.smoove.io/v1/Contacts/${existing.id}`, {
             method: "PUT",
