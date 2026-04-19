@@ -419,7 +419,7 @@ export default function Page() {
       <Section bg="bg-white">
         <Reveal>
           <h2 className="text-3xl lg:text-4xl font-extrabold text-navy mb-8">
-            עם מה יוצאת מהמעבדה
+            עם מה את יוצאת מהמעבדה
           </h2>
         </Reveal>
 

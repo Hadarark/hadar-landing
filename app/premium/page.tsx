@@ -572,7 +572,7 @@ export default function PremiumPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            עם מה יוצאת מהמעבדה
+            עם מה את יוצאת מהמעבדה
           </motion.h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
