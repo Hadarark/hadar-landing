@@ -151,6 +151,7 @@ function CTAButton({ text, small = false }: { text: string; small?: boolean }) {
 
 export default function Page() {
   const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
+  const [consent, setConsent] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -740,11 +741,24 @@ export default function Page() {
                   className="w-full border border-navy/20 bg-white px-5 py-4 text-navy text-lg placeholder:text-navy/40 focus:border-[#A0522D] focus:outline-none transition-colors text-right"
                 />
 
+                <label className="flex items-start gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    required
+                    checked={consent}
+                    onChange={(e) => setConsent(e.target.checked)}
+                    className="mt-1 w-4 h-4 flex-shrink-0 accent-[#A0522D]"
+                  />
+                  <span className="text-navy/60 text-sm leading-relaxed">
+                    אני מאשרת קבלת עדכונים, תכנים ומבצעים במייל מהדר ארקדש. ניתן להסיר את עצמך בכל עת.
+                  </span>
+                </label>
+
                 <motion.button
                   type="submit"
-                  disabled={loading}
-                  whileHover={{ scale: loading ? 1 : 1.02 }}
-                  whileTap={{ scale: loading ? 1 : 0.97 }}
+                  disabled={loading || !consent}
+                  whileHover={{ scale: loading || !consent ? 1 : 1.02 }}
+                  whileTap={{ scale: loading || !consent ? 1 : 0.97 }}
                   className="w-full bg-[#A0522D] text-white font-bold py-5 text-xl transition-shadow hover:shadow-[0_4px_24px_rgba(160,82,45,0.35)] disabled:opacity-70"
                 >
                   {loading ? "שולחת..." : "הדר, אני בפנים! שרייני לי מקום"}

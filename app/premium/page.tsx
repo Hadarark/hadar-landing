@@ -145,6 +145,7 @@ function CTAButton({ text, size = "lg" }: { text: string; size?: "sm" | "lg" }) 
 
 export default function PremiumPage() {
   const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
+  const [consent, setConsent] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -1008,12 +1009,25 @@ export default function PremiumPage() {
                   <p className="text-red-600 text-sm">{error}</p>
                 )}
 
+                <label className="flex items-start gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    required
+                    checked={consent}
+                    onChange={(e) => setConsent(e.target.checked)}
+                    className="mt-1 w-4 h-4 flex-shrink-0 accent-[#A0522D]"
+                  />
+                  <span className="text-[#2C3E5A]/60 text-sm leading-relaxed">
+                    אני מאשרת קבלת עדכונים, תכנים ומבצעים במייל מהדר ארקדש. ניתן להסיר את עצמך בכל עת.
+                  </span>
+                </label>
+
                 <motion.button
                   type="submit"
-                  disabled={loading}
+                  disabled={loading || !consent}
                   className="group relative w-full inline-flex items-center justify-center gap-3 bg-[#A0522D] text-white font-bold overflow-hidden px-10 py-5 text-xl disabled:opacity-60"
-                  whileHover={{ scale: loading ? 1 : 1.02 }}
-                  whileTap={{ scale: loading ? 1 : 0.97 }}
+                  whileHover={{ scale: loading || !consent ? 1 : 1.02 }}
+                  whileTap={{ scale: loading || !consent ? 1 : 0.97 }}
                 >
                   <motion.span
                     className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"
