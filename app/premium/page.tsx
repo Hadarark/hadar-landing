@@ -1018,7 +1018,7 @@ export default function PremiumPage() {
                     className="mt-1 w-4 h-4 flex-shrink-0 accent-[#A0522D]"
                   />
                   <span className="text-[#2C3E5A]/60 text-sm leading-relaxed">
-                    אני מאשרת קבלת עדכונים, תכנים ומבצעים במייל מהדר ארקדש. ניתן להסיר את עצמך בכל עת.
+                    קראתי ואני מסכימה ל<a href="/privacy" target="_blank" className="underline text-[#A0522D]">מדיניות הפרטיות ותנאי השימוש</a> ולקבלת עדכונים ותכנים במייל מהדר ארקדש. ניתן להסיר את עצמך בכל עת.
                   </span>
                 </label>
 
