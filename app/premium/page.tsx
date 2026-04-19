@@ -894,7 +894,8 @@ export default function PremiumPage() {
             </motion.p>
 
             <p className="text-white/60 text-lg max-w-xl mx-auto mb-10 leading-relaxed">
-              פחות מעלות פגישת ייעוץ אחת בקליניקה,
+              <span className="text-white font-extrabold text-xl">פחות מעלות פגישת ייעוץ אחת בקליניקה.</span>
+              <br />
               עבור חודש שלם של ליווי צמוד, 4 מפגשים וכלי האבחון האישי.
             </p>
 

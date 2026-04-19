@@ -658,7 +658,8 @@ export default function Page() {
           <p className="text-white text-lg mb-2">במחזור הפיילוט, 10 מקומות בלבד:</p>
           <p className="text-white text-7xl font-extrabold mb-3">299 ש"ח</p>
           <p className="text-white/80 text-lg leading-relaxed mb-8">
-            פחות מעלות פגישת ייעוץ אחת בקליניקה,
+            <span className="text-white font-extrabold text-xl">פחות מעלות פגישת ייעוץ אחת בקליניקה.</span>
+            <br />
             עבור חודש שלם של ליווי צמוד, 4 מפגשים וכלי האבחון האישי.
           </p>
           <p className="text-white font-bold text-xl mb-8">המחיר הזה לא יחזור.</p>
