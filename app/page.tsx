@@ -227,7 +227,7 @@ export default function Page() {
           </motion.div>
 
           <motion.div
-            className="flex flex-wrap gap-6 mt-10 text-white/60 text-base"
+            className="flex flex-wrap gap-6 mt-10 text-white/90 text-base"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.75 }}
@@ -326,7 +326,7 @@ export default function Page() {
             <br />
             מעבדת גיל הגשר
           </h2>
-          <p className="text-navy/50 text-lg mb-6">
+          <p className="text-navy/80 text-lg font-semibold mb-6">
             4 מפגשים · ליווי אישי · 10 אמהות בלבד
           </p>
         </Reveal>
@@ -412,7 +412,7 @@ export default function Page() {
       <Section bg="bg-white">
         <Reveal>
           <h2 className="text-3xl lg:text-4xl font-extrabold text-navy mb-8">
-            עם מה יוצאת מהמעבדה
+            עם מה יוצאים
           </h2>
         </Reveal>
 
@@ -426,7 +426,7 @@ export default function Page() {
           {[
             {
               title: "משקפיים חדשות על הילד שלך",
-              text: "תבינה למה הוא מתנהג ככה, ותפסיקי להרגיש שאת הולכת על ביצים",
+              text: "תביני למה הוא מתנהג ככה, ותפסיקי להרגיש שאת הולכת על ביצים",
             },
             {
               title: "מפת הלופ שלך",
@@ -592,7 +592,7 @@ export default function Page() {
                 נשואה לאוראל, ואמא לדור (9.5), עומר (7.5) וארי (3.5).
               </p>
               <p className="text-navy font-semibold text-base mb-6">
-                מדריכת הורים מוסמכת בגישה ההיקשרותית-התפתחותית ויועצת זוגית, בוגרת האוניברסיטה בר-אילן.
+                מדריכת הורים מוסמכת בגישה ההיקשרותית-התפתחותית ויועצת זוגית, בוגרת אוניברסיטת בר-אילן.
               </p>
             </Reveal>
 
@@ -691,7 +691,7 @@ export default function Page() {
               <div className="bg-[#2C3E5A] text-white p-8 text-center">
                 <p className="text-3xl font-bold mb-3">קיבלתי!</p>
                 <p className="text-white/70 text-lg mb-6">
-                  השלב האחרון — תשלום להבטחת המקום שלך.
+                  השלב האחרון - תשלום להבטחת המקום שלך.
                 </p>
                 <a
                   href="https://secure.cardcom.solutions/EA/EA5/lpskTbNqVUGzncHXQmNZA/PaymentSP"

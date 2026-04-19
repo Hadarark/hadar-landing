@@ -293,7 +293,7 @@ export default function PremiumPage() {
           </motion.div>
 
           <motion.div
-            className="flex flex-wrap gap-x-8 gap-y-3 mt-10 text-white/50 text-base"
+            className="flex flex-wrap gap-x-8 gap-y-3 mt-10 text-white/90 text-base"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.9 }}
@@ -360,7 +360,7 @@ export default function PremiumPage() {
             {[
               "התשובות הפכו לקצרות. פרצופים. דלתות שנטרקות.",
               'ואת הולכת על ביצים בבית שלך, רק כדי לא לייצר עוד פיצוץ.',
-              '"זה הגיל, זה נורמלי" — כולם אומרים לך. אבל בפנים? את מפחדת שאם ככה זה נראה עכשיו, אז מה עוד מחכה לנו בגיל 14.',
+              '"זה הגיל, זה נורמלי", כולם אומרים לך. אבל בפנים? את מפחדת שאם ככה זה נראה עכשיו, אז מה עוד מחכה לנו בגיל 14.',
             ].map((text, i) => (
               <motion.p
                 key={i}
@@ -567,14 +567,14 @@ export default function PremiumPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            עם מה יוצאת מהמעבדה
+            עם מה יוצאים
           </motion.h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
             {[
               {
                 title: "משקפיים חדשות על הילד שלך",
-                text: "תבינה למה הוא מתנהג ככה, ותפסיקי להרגיש שאת הולכת על ביצים",
+                text: "תביני למה הוא מתנהג ככה, ותפסיקי להרגיש שאת הולכת על ביצים",
                 color: "bg-[#A0522D]",
               },
               {
@@ -640,7 +640,7 @@ export default function PremiumPage() {
                 Icon: Icon.video,
                 title: "4 לייבים שבועיים של 75 דקות",
                 tag: "עבודה אמיתית, לא רק להקשיב",
-                text: "כל מפגש בנוי עם זמני עבודה של ממש שזורים בתוכו. לא הרצאה שאת יושבת ומקשיבה — אלא מרחב שבו את עובדת, מנתחת, ומיישמת כבר בזמן אמת.",
+                text: "כל מפגש בנוי עם זמני עבודה של ממש שזורים בתוכו. לא הרצאה שאת יושבת ומקשיבה, אלא מרחב שבו את עובדת, מנתחת, ומיישמת כבר בזמן אמת.",
               },
               {
                 Icon: Icon.map,
@@ -798,7 +798,7 @@ export default function PremiumPage() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.15 }}
               >
-                מדריכת הורים מוסמכת בגישה ההיקשרותית-התפתחותית ויועצת זוגית, בוגרת האוניברסיטה בר-אילן.
+                מדריכת הורים מוסמכת בגישה ההיקשרותית-התפתחותית ויועצת זוגית, בוגרת אוניברסיטת בר-אילן.
               </motion.p>
 
               <motion.div
