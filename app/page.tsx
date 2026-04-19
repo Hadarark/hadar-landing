@@ -655,7 +655,7 @@ export default function Page() {
         <Reveal>
           <p className="text-white/70 text-base mb-1">ערך המעבדה</p>
           <p className="text-white/50 text-3xl font-bold line-through mb-4">799 ש"ח</p>
-          <p className="text-white text-lg mb-2">במחיר ההשקה, 10 מקומות בלבד:</p>
+          <p className="text-white text-lg mb-2">במחזור הפיילוט, 10 מקומות בלבד:</p>
           <p className="text-white text-7xl font-extrabold mb-3">299 ש"ח</p>
           <p className="text-white/80 text-lg leading-relaxed mb-8">
             פחות מעלות פגישת ייעוץ אחת בקליניקה,
@@ -673,7 +673,7 @@ export default function Page() {
             מה אם זה לא יעבוד אצלי?
           </h2>
           <p className="text-navy/70 text-lg leading-relaxed mb-4">
-            בדיוק בגלל שזה מחיר השקה, המחיר משקף את זה.
+            בדיוק בגלל שזה מחזור פיילוט, המחיר משקף את זה.
             299 ש"ח זה לא הימור. זו הזדמנות לבדוק עם אפס סיכון.
           </p>
           <p className="text-navy/70 text-lg leading-relaxed">

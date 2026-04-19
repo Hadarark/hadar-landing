@@ -263,7 +263,7 @@ export default function PremiumPage() {
             transition={{ delay: 0.2 }}
           >
             <span className="w-2 h-2 rounded-full bg-[#C8956C] animate-pulse" />
-            <span className="text-white/90 text-sm font-medium">מחיר השקה · 10 מקומות בלבד</span>
+            <span className="text-white/90 text-sm font-medium">מחזור פיילוט · 10 מקומות בלבד</span>
           </motion.div>
 
           <motion.h1
@@ -328,7 +328,7 @@ export default function PremiumPage() {
         <div className="max-w-3xl mx-auto grid grid-cols-2 gap-6 text-center">
           {[
             { value: count4, suffix: "", label: "מפגשי עומק" },
-            { value: count10, suffix: "", label: "מקומות בהשקה" },
+            { value: count10, suffix: "", label: "מקומות בפיילוט" },
           ].map((stat, i) => (
             <motion.div
               key={i}
@@ -880,7 +880,7 @@ export default function PremiumPage() {
             <p className="text-white/40 text-base mb-1">ערך המעבדה</p>
             <p className="text-white/30 text-3xl font-bold line-through mb-6">799 ש"ח</p>
 
-            <p className="text-white/70 text-xl mb-3">במחיר ההשקה, 10 מקומות בלבד:</p>
+            <p className="text-white/70 text-xl mb-3">במחזור הפיילוט, 10 מקומות בלבד:</p>
 
             <motion.p
               className="text-white font-extrabold mb-4"
@@ -921,7 +921,7 @@ export default function PremiumPage() {
               מה אם זה לא יעבוד אצלי?
             </h2>
             <p className="text-[#2C3E5A]/70 text-xl leading-relaxed mb-4">
-              בדיוק בגלל שזה מחיר השקה, המחיר משקף את זה.
+              בדיוק בגלל שזה מחזור פיילוט, המחיר משקף את זה.
               299 ש"ח זה לא הימור. זו הזדמנות לבדוק עם אפס סיכון.
             </p>
             <p className="text-[#2C3E5A]/70 text-xl leading-relaxed mb-6">
