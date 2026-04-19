@@ -246,6 +246,11 @@ export default function PremiumPage() {
           }}
         />
 
+        {/* Logo */}
+        <div className="absolute top-6 right-6 lg:right-16 z-20">
+          <img src="/logo.svg" alt="הדר ארקדש" className="h-12 w-auto" style={{ filter: "brightness(0) invert(1)" }} />
+        </div>
+
         <motion.div
           style={{ y: heroY, opacity: heroOpacity }}
           className="relative z-10 max-w-3xl mx-auto px-6 lg:px-16 w-full pt-24"
@@ -560,14 +565,14 @@ export default function PremiumPage() {
       {/* ── OUTCOMES ─────────────────────────────────────────────────────── */}
       <section className="py-20 lg:py-32 px-6 lg:px-16 bg-white">
         <div className="max-w-3xl mx-auto">
-          <Label text="מה יוצאים עם זה" />
+          <Label text="עם מה יוצאים" />
           <motion.h2
             className="text-4xl lg:text-5xl font-extrabold text-[#2C3E5A] mb-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            עם מה יוצאים
+            עם מה יוצאת מהמעבדה
           </motion.h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
@@ -1040,8 +1045,9 @@ export default function PremiumPage() {
       </section>
 
       {/* ── FOOTER ───────────────────────────────────────────────────────── */}
-      <footer className="bg-[#2C3E5A] py-8 px-6 text-center">
-        <p className="text-white/30 text-sm">הדר ארקדש · הורות. זוגיות. התפתחות.</p>
+      <footer className="bg-[#2C3E5A] py-10 px-6 text-center">
+        <img src="/logo.svg" alt="הדר ארקדש" className="h-12 w-auto mx-auto mb-4" style={{ filter: "brightness(0) invert(1) opacity(0.5)" }} />
+        <p className="text-white/30 text-sm">הורות. זוגיות. התפתחות.</p>
       </footer>
     </main>
   );

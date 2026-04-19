@@ -184,6 +184,13 @@ export default function Page() {
   return (
     <main className="font-assistant text-navy">
 
+      {/* ── HEADER ───────────────────────────────────────────────────────── */}
+      <header className="bg-[#2C3E5A] px-5 lg:px-16 pt-8 pb-0">
+        <div className="max-w-3xl mx-auto">
+          <img src="/logo.svg" alt="הדר ארקדש" className="h-14 w-auto" style={{ filter: "brightness(0) invert(1)" }} />
+        </div>
+      </header>
+
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <section className="bg-[#2C3E5A] text-white min-h-[90vh] flex flex-col justify-center px-5 lg:px-16 py-20">
         <div className="max-w-3xl mx-auto w-full">
@@ -412,7 +419,7 @@ export default function Page() {
       <Section bg="bg-white">
         <Reveal>
           <h2 className="text-3xl lg:text-4xl font-extrabold text-navy mb-8">
-            עם מה יוצאים
+            עם מה יוצאת מהמעבדה
           </h2>
         </Reveal>
 
@@ -757,8 +764,9 @@ export default function Page() {
       </Section>
 
       {/* ── FOOTER ───────────────────────────────────────────────────────── */}
-      <footer className="bg-[#2C3E5A] text-white/40 text-center py-8 text-sm">
-        <p>הדר ארקדש · הורות. זוגיות. התפתחות.</p>
+      <footer className="bg-[#2C3E5A] text-white/40 text-center py-10 text-sm">
+        <img src="/logo.svg" alt="הדר ארקדש" className="h-12 w-auto mx-auto mb-4" style={{ filter: "brightness(0) invert(1) opacity(0.5)" }} />
+        <p>הורות. זוגיות. התפתחות.</p>
       </footer>
     </main>
   );
