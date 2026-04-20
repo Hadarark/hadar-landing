@@ -878,7 +878,7 @@ export default function PremiumPage() {
             viewport={{ once: true }}
           >
             <p className="text-white/40 text-base mb-1">ערך המעבדה</p>
-            <p className="text-white/30 text-3xl font-bold line-through mb-6">799 ש"ח</p>
+            <p className="text-white/30 text-3xl font-bold line-through mb-6">797 ש"ח</p>
 
             <p className="text-white/70 text-xl mb-3">במחזור הפיילוט, 10 מקומות בלבד:</p>
 

@@ -654,7 +654,7 @@ export default function Page() {
       <Section bg="bg-[#A0522D]">
         <Reveal>
           <p className="text-white/70 text-base mb-1">ערך המעבדה</p>
-          <p className="text-white/50 text-3xl font-bold line-through mb-4">799 ש"ח</p>
+          <p className="text-white/50 text-3xl font-bold line-through mb-4">797 ש"ח</p>
           <p className="text-white text-lg mb-2">במחזור הפיילוט, 10 מקומות בלבד:</p>
           <p className="text-white text-7xl font-extrabold mb-3">297 ש"ח</p>
           <p className="text-white/80 text-lg leading-relaxed mb-8">
