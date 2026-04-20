@@ -637,7 +637,7 @@ export default function PremiumPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            מה כלול בתוך ה-299 ש"ח
+            מה כלול בתוך ה-297 ש"ח
           </motion.h2>
 
           <div className="space-y-5">
@@ -890,7 +890,7 @@ export default function PremiumPage() {
               viewport={{ once: true }}
               transition={{ type: "spring", stiffness: 200, damping: 20, delay: 0.2 }}
             >
-              299 <span className="text-[#C8956C] text-4xl lg:text-5xl align-middle">ש"ח</span>
+              297 <span className="text-[#C8956C] text-4xl lg:text-5xl align-middle">ש"ח</span>
             </motion.p>
 
             <p className="text-white/60 text-lg max-w-xl mx-auto mb-10 leading-relaxed">
@@ -923,7 +923,7 @@ export default function PremiumPage() {
             </h2>
             <p className="text-[#2C3E5A]/70 text-xl leading-relaxed mb-4">
               בדיוק בגלל שזה מחזור פיילוט, המחיר משקף את זה.
-              299 ש"ח זה לא הימור. זו הזדמנות לבדוק עם אפס סיכון.
+              297 ש"ח זה לא הימור. זו הזדמנות לבדוק עם אפס סיכון.
             </p>
             <p className="text-[#2C3E5A]/70 text-xl leading-relaxed mb-6">
               הדרך לשינוי בבית לא דורשת קסמים.
