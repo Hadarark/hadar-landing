@@ -4,6 +4,8 @@ import { motion, useInView, useScroll, useTransform, AnimatePresence } from "fra
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 
+// ─── Counter Hook ─────────────────────────────────────────────────────────────
+
 function useCounter(target: number, inView: boolean, duration = 1200) {
   const [count, setCount] = useState(0);
   useEffect(() => {
@@ -20,6 +22,8 @@ function useCounter(target: number, inView: boolean, duration = 1200) {
   return count;
 }
 
+// ─── SVG Icons ────────────────────────────────────────────────────────────────
+
 const Icon = {
   calendar: () => (<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>),
   monitor: () => (<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>),
@@ -32,9 +36,9 @@ const Icon = {
   quote: () => (<svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>),
   plus: () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>),
   minus: () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>),
-  file: () => (<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>),
-  kit: () => (<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>),
 };
+
+// ─── Floating Orb ─────────────────────────────────────────────────────────────
 
 function Orb({ size = 400, color, top, right, bottom, left, delay = 0, opacity = 0.18 }:
   { size?: number; color: string; top?: string; right?: string; bottom?: string; left?: string; delay?: number; opacity?: number }) {
@@ -46,6 +50,8 @@ function Orb({ size = 400, color, top, right, bottom, left, delay = 0, opacity =
   );
 }
 
+// ─── Label ────────────────────────────────────────────────────────────────────
+
 function Label({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
   return (
     <motion.div className={`flex items-center gap-3 mb-5 ${light ? "text-[#C8956C]" : "text-[#A0522D]"}`}
@@ -55,6 +61,8 @@ function Label({ children, light = false }: { children: React.ReactNode; light?:
     </motion.div>
   );
 }
+
+// ─── CTA Button ───────────────────────────────────────────────────────────────
 
 function CTAButton({ text = "אני רוצה להצטרף", variant = "dark", full = true }:
   { text?: string; variant?: "dark" | "light"; full?: boolean }) {
@@ -73,6 +81,8 @@ function CTAButton({ text = "אני רוצה להצטרף", variant = "dark", fu
     </motion.a>
   );
 }
+
+// ─── Sticky CTA ───────────────────────────────────────────────────────────────
 
 function StickyBar() {
   const [show, setShow] = useState(false);
@@ -96,6 +106,8 @@ function StickyBar() {
   );
 }
 
+// ─── FAQ Item ─────────────────────────────────────────────────────────────────
+
 function FAQItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   return (
@@ -116,6 +128,8 @@ function FAQItem({ q, a }: { q: string; a: string }) {
     </div>
   );
 }
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function WorkshopPage() {
   const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
@@ -166,30 +180,10 @@ export default function WorkshopPage() {
   }
 
   const weeks = [
-    {
-      num: "01",
-      tag: "מפגש 1",
-      title: "החלל שנוצר",
-      text: "מה קורה ביולוגית בגיל 8–11. הוואקום של הצהריים הריקים. ולמה 17:00 הוא השעה שבה הכי הרבה ריבים פורצים — ואיך שוברים את זה.",
-    },
-    {
-      num: "02",
-      tag: "מפגש 2",
-      title: "לא אשמים, אבל כן אחראיים",
-      text: "ויסות הורי — כי כשאתם מאבדים את זה, הוא מאבד אתכם. נצלול לאהבה. ונכיר כלי מנצח.",
-    },
-    {
-      num: "03",
-      tag: "מפגש 3",
-      title: "גבולות — איך עושים את זה נכון?",
-      text: "למה ילד שאין לו גבולות הוא ילד בחרדה. דמעות חוסר תוחלת — ולמה הן בעצם חדשות טובות. וניהול מסכים בלי להפוך כל ערב למלחמה.",
-    },
-    {
-      num: "04",
-      tag: "מפגש 4",
-      title: "אמנות התיקון",
-      text: "כולנו מתפוצצים. המפגש הזה על מה קורה אחרי — כי שם, בדיוק שם, נבנה הקשר האמיתי.",
-    },
+    { num: "01", tag: "מפגש 1", title: "החלל שנוצר", text: "מה קורה ביולוגית בגיל 8–11. הוואקום של הצהריים הריקים. ולמה 17:00 הוא השעה שבה הכי הרבה ריבים פורצים — ואיך שוברים את זה." },
+    { num: "02", tag: "מפגש 2", title: "לא אשמים, אבל כן אחראיים", text: "ויסות הורי — כי כשאתם מאבדים את זה, הוא מאבד אתכם. נצלול לאהבה. ונכיר כלי מנצח." },
+    { num: "03", tag: "מפגש 3", title: "גבולות — איך עושים את זה נכון?", text: "למה ילד שאין לו גבולות הוא ילד בחרדה. דמעות חוסר תוחלת — ולמה הן בעצם חדשות טובות. וניהול מסכים בלי להפוך כל ערב למלחמה." },
+    { num: "04", tag: "מפגש 4", title: "אמנות התיקון", text: "כולנו מתפוצצים. המפגש הזה על מה קורה אחרי — כי שם, בדיוק שם, נבנה הקשר האמיתי." },
   ];
 
   return (
@@ -257,7 +251,7 @@ export default function WorkshopPage() {
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.88 }}>
             <span>23.05.26</span><span className="text-white/30">|</span>
             <span>ימי ראשון 20:45–22:00</span><span className="text-white/30">|</span>
-            <span>גוגל מיט</span>
+            <span>זום</span>
           </motion.div>
         </motion.div>
 
@@ -287,7 +281,7 @@ export default function WorkshopPage() {
         </div>
       </div>
 
-      {/* ══ PAIN ══════════════════════════════════════════════════════════════ */}
+      {/* ══ PAIN / HOOK ═══════════════════════════════════════════════════════ */}
       <section className="py-20 lg:py-32 px-6 lg:px-16 bg-white">
         <div className="max-w-3xl mx-auto">
           <Label>מה שאת חווה עכשיו</Label>
@@ -299,49 +293,31 @@ export default function WorkshopPage() {
             <span className="text-[#A0522D]">אבל הלופ חוזר.</span>
           </motion.h2>
 
-          <motion.div className="space-y-4 mb-10"
-            initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            {[
-              "שאלת \"איך היה?\" — קיבלת קיר.",
-              "ביקשת לכבות מסך — פיצוץ.",
-              "אמרת משהו תמים — \"את חופרת\".",
-              "ואת הולכת על ביצים בבית שלך.",
-            ].map((item, i) => (
-              <motion.p key={i} className="text-xl text-[#2C3E5A]/70 leading-relaxed"
-                initial={{ opacity: 0, x: 14 }} whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }} transition={{ delay: i * 0.07 }}>{item}</motion.p>
-            ))}
-          </motion.div>
-
           <motion.div className="relative bg-gradient-to-br from-[#A0522D]/8 to-[#C8956C]/4 border-r-4 border-[#A0522D] pr-8 py-7 pl-6 mb-10"
             initial={{ opacity: 0, scale: 0.97 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}>
             <p className="text-[#2C3E5A]/60 italic text-xl lg:text-2xl leading-relaxed mb-3">
-              ואת מתחילה לשאול את עצמך — מה אני עושה לא נכון עם הילד הזה?
+              ואת מתחילה לשאול את עצמך — מה אני עושה לא נכון?
             </p>
-            <p className="text-[#A0522D] font-bold text-xl mt-3">כנראה שלא עושה כלום לא נכון. אבל מה שקורה — כנראה שלא הסבירו לך.</p>
+            <div className="mt-4">
+              <p className="text-[#2C3E5A] font-bold text-xl">לפני שאת עונה על השאלה הזו — רגע.</p>
+              <p className="text-[#A0522D] font-bold text-2xl mt-1">מה אם מה שצריך להשתנות — מתחיל בך?</p>
+            </div>
           </motion.div>
         </div>
       </section>
 
       {/* ══ HOOK — לא מאוחר מדי ══════════════════════════════════════════════ */}
-      <section className="py-16 lg:py-24 px-6 lg:px-16 bg-[#2C3E5A] relative overflow-hidden">
-        <Orb color="rgba(160,82,45,0.9)" size={440} top="-80px" right="-60px" delay={0} opacity={0.18} />
+      <section className="py-16 lg:py-20 px-6 lg:px-16 bg-[#2C3E5A] relative overflow-hidden">
+        <Orb color="rgba(160,82,45,0.9)" size={400} top="-60px" right="-60px" delay={0} opacity={0.18} />
         <div className="max-w-3xl mx-auto relative z-10 text-center">
-          <motion.p className="text-[#C8956C] text-sm font-bold tracking-[0.22em] uppercase mb-6"
-            initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
-            לפני שאת ממשיכה
-          </motion.p>
-          <motion.h2 className="text-4xl lg:text-6xl font-extrabold text-white leading-tight mb-6"
-            initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <motion.h2 className="text-3xl lg:text-5xl font-extrabold text-white leading-tight mb-4"
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             זה לא מאוחר מדי.
-            <br />
-            <span style={{ background: "linear-gradient(135deg, #C8956C 0%, #E8C49A 50%, #C8956C 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
-              ההיפך — זה בדיוק הזמן.
-            </span>
           </motion.h2>
-          <motion.p className="text-white/65 text-xl lg:text-2xl leading-relaxed max-w-xl mx-auto"
-            initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.15 }}>
-            בין גיל 8 ל-11 המוח עדיין גמיש. עדיין בונה. מה שנעשה עכשיו — נשאר.
+          <motion.p className="text-2xl lg:text-3xl font-extrabold leading-tight mb-0"
+            style={{ background: "linear-gradient(135deg, #C8956C 0%, #E8C49A 50%, #C8956C 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}
+            initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.12 }}>
+            ההיפך — זה בדיוק הזמן.
           </motion.p>
         </div>
       </section>
@@ -378,7 +354,7 @@ export default function WorkshopPage() {
                 initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.15 }}>
                 <p>לפני כמה שנים, בלילה שאני לא שוכחת — עמדתי מול בתי הגדולה, מותשת ומרוקנת, ומשהו בי פשוט... נשבר.</p>
                 <p>לא צרחתי עליה כי היא עשתה משהו נורא. צרחתי כי <span className="text-[#2C3E5A] font-semibold">לא היה לי יותר.</span> כי לא הבנתי מה קורה בינינו. כי כל כלי שניסיתי — לא עבד.</p>
-                <p>יצאתי למסע. למדתי מדעי מוח, היקשרות, EFT. הבנתי מה קורה בגיל 8-11 — הגיל שאף אחד לא מסביר באמת.</p>
+                <p>יצאתי למסע. למדתי מדעי מוח, היקשרות, EFT. הבנתי מה קורה בגיל 7-11 — הגיל שאף אחד לא מסביר באמת.</p>
                 <p className="text-[#A0522D] font-bold text-xl">ואת מה שלמדתי — אני מעבירה לך. כדי שייקח לך הרבה פחות זמן.</p>
               </motion.div>
             </div>
@@ -397,7 +373,7 @@ export default function WorkshopPage() {
 
           <div className="space-y-4 mb-10">
             {[
-              "יש לך ילד בגיל 8-11 שמרגיש \"אחר\" ממה שהיה",
+              "יש לך ילד בגיל 7-11 שמרגיש \"אחר\" ממה שהיה",
               "את חוזרת על אותם קונפליקטים שוב ושוב — ולא מבינה למה",
               "קשה לך לראות את הטוב בו, במיוחד כשיש ילדים קטנים יותר בבית",
               "כבר התחלת תהליך מודעות — ואת מוכנה להסתכל פנימה, לא רק על הילד",
@@ -416,27 +392,27 @@ export default function WorkshopPage() {
           <motion.div className="bg-[#F5F4F2] border-r-4 border-[#2C3E5A]/20 pr-6 py-5 pl-5"
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
             <p className="text-[#2C3E5A]/50 font-bold text-base mb-1">המעבדה הזו לא בשבילך אם:</p>
-            <p className="text-[#2C3E5A]/55 text-lg">את מחפשת מתכון מדויק שעובד תוך שבוע לכל ילד.</p>
+            <p className="text-[#2C3E5A]/55 text-lg">את מחפשת מישהי שתגיד לך מה לעשות עם הילד. כאן אנחנו מסתכלות עלייך.</p>
           </motion.div>
         </div>
       </section>
 
-      {/* ══ REFRAME — פרארי וברקסים ══════════════════════════════════════════ */}
+      {/* ══ MECHANISM ════════════════════════════════════════════════════════ */}
       <section className="py-20 lg:py-32 px-6 lg:px-16 bg-[#F5F4F2] relative overflow-hidden">
         <Orb color="rgba(200,149,108,0.6)" size={500} top="-100px" left="-100px" delay={1} opacity={0.12} />
         <div className="max-w-3xl mx-auto relative z-10">
           <Label>מה באמת קורה</Label>
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <h2 className="text-4xl lg:text-5xl font-extrabold text-[#2C3E5A] leading-tight mb-3">
-              גיל 8-11 הוא לא גיל ההתבגרות מוקדם.
+              גיל 7-11 הוא לא גיל ההתבגרות מוקדם.
             </h2>
             <p className="text-4xl lg:text-5xl font-extrabold text-[#A0522D] mb-10">זה גיל הגשר.</p>
           </motion.div>
 
           <div className="space-y-5 mb-10">
             {[
-              "בין גיל 8 ל-11 המוח של הילד שלך עובר שיפוץ פנימי כללי. הוא גוזם קשרים ישנים ובונה חדשים.",
-              "הוא מרגיש רגשות בעוצמה שהוא לא יכול לעצור — כי החלק במוח שאמור לעצור אותם עדיין בפיגומים.",
+              "גיל 0-6? יש המון. גיל 12 ומעלה? גיל התבגרות — כולם מכירים. אבל גיל 7-11?",
+              "זה הגיל שבו המוח עובר שינוי ביולוגי אמיתי. הילד מתחיל לחפש שייכות מחוץ לבית. הקול שלך מתחיל \"להחליש\" — לא כי הוא לא אוהב אותך, אלא כי המוח שלו עושה בדיוק מה שהוא אמור לעשות.",
             ].map((t, i) => (
               <motion.p key={i} className="text-xl text-[#2C3E5A]/68 leading-relaxed"
                 initial={{ opacity: 0, x: 18 }} whileInView={{ opacity: 1, x: 0 }}
@@ -444,31 +420,32 @@ export default function WorkshopPage() {
             ))}
           </div>
 
+          {/* ── Ferrari Reframe ── */}
           <motion.div className="relative bg-[#2C3E5A] p-8 lg:p-10 overflow-hidden mb-8"
             style={{ boxShadow: "0 24px 60px rgba(44,62,90,0.22)" }}
             initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#A0522D] via-[#C8956C] to-[#6B7A5A]" />
             <p className="text-[#C8956C] text-2xl lg:text-3xl font-extrabold mb-5">מנוע של פרארי. ברקסים של אופניים.</p>
-            <div className="space-y-3 text-white/72 text-lg leading-relaxed">
-              <p>הוא לא בוחר להתפוצץ.</p>
-              <p>הוא לא עושה לך את זה.</p>
-              <p>הוא מוצף — ואתם המקום הכי בטוח שלו לשפוך.</p>
+            <div className="space-y-2 text-white/72 text-lg leading-relaxed mb-5">
+              <p>הוא מרגיש רגשות בעוצמה שהוא לא יכול לעצור — כי החלק במוח שאמור לעצור אותם עדיין בפיגומים.</p>
+              <p>הוא לא בוחר להתפוצץ. הוא לא עושה לך את זה. הוא מוצף — ואתם המקום הכי בטוח שלו לשפוך.</p>
             </div>
-            <div className="mt-6 pt-6 border-t border-white/10">
-              <p className="text-white font-bold text-xl">כשמבינים את זה — לא מגיבים מהמקום הנעלב.</p>
-              <p className="text-[#C8956C] font-bold text-xl">מגיבים מהמקום שיודע.</p>
-            </div>
+            <p className="text-white font-bold text-xl">כשמבינים את זה — לא מגיבים מהמקום הנעלב.</p>
+            <p className="text-[#C8956C] font-bold text-xl">מגיבים מהמקום שיודע.</p>
           </motion.div>
 
-          <motion.div className="relative bg-[#2C3E5A]/5 border border-[#A0522D]/20 p-7"
-            initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
-            <p className="text-[#A0522D] font-bold text-xl mb-2">וזה גם חלון ההזדמנויות הכי גדול שיש לך.</p>
-            <p className="text-[#2C3E5A]/65 text-lg leading-relaxed">המוח עדיין גמיש. עדיין בונה. עבודה שתעשי עכשיו תשאיר חותם לשנים.</p>
+          <motion.div className="relative bg-[#2C3E5A] p-8 lg:p-10 overflow-hidden"
+            style={{ boxShadow: "0 24px 60px rgba(44,62,90,0.22)" }}
+            initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#A0522D] via-[#C8956C] to-[#6B7A5A]" />
+            <p className="text-[#C8956C] text-2xl lg:text-3xl font-extrabold mb-4">וזה גם חלון ההזדמנויות הכי גדול שיש לך.</p>
+            <p className="text-white/72 text-lg leading-relaxed">לפני שמאחר. לפני שהמרחק גדל. עבודת עומק שתעשי עכשיו יכולה לשנות את כל מה שיקרה בעשור הקרוב.</p>
+            <p className="mt-4 text-white/30 text-sm tracking-wider">לא דרמה — מחקר.</p>
           </motion.div>
         </div>
       </section>
 
-      {/* ══ 4 SESSIONS ═══════════════════════════════════════════════════════ */}
+      {/* ══ 4 SESSIONS — INTERACTIVE TABS ═══════════════════════════════════ */}
       <section className="py-20 lg:py-32 px-6 lg:px-16 bg-[#2C3E5A] relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.035]"
           style={{ backgroundImage: "linear-gradient(rgba(200,149,108,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(200,149,108,0.6) 1px, transparent 1px)", backgroundSize: "50px 50px" }} />
@@ -478,7 +455,7 @@ export default function WorkshopPage() {
           <Label light>מה קורה שם</Label>
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <h2 className="text-4xl lg:text-5xl font-extrabold text-white mb-3">מעבדת גיל הגשר</h2>
-            <p className="text-white/45 text-lg mb-12">4 מפגשים · גוגל מיט · 75 דקות · עד 12 משתתפות</p>
+            <p className="text-white/45 text-lg mb-12">4 מפגשים · זום · 75 דקות · עד 12 נשים</p>
           </motion.div>
 
           <div className="flex gap-2 mb-0 flex-wrap">
@@ -518,26 +495,48 @@ export default function WorkshopPage() {
         </div>
       </section>
 
-      {/* ══ WHAT'S INCLUDED ══════════════════════════════════════════════════ */}
+      {/* ══ BONUS ════════════════════════════════════════════════════════════ */}
       <section className="py-20 lg:py-32 px-6 lg:px-16 bg-white">
         <div className="max-w-3xl mx-auto">
-          <Label>מה מקבלים</Label>
-          <motion.h2 className="text-3xl lg:text-4xl font-extrabold text-[#2C3E5A] mb-10"
+          <Label>לפני שמתחילים</Label>
+          <motion.div className="relative bg-[#F5F4F2] p-8 lg:p-10 overflow-hidden"
+            style={{ boxShadow: "0 8px 40px rgba(44,62,90,0.08)" }}
+            initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#A0522D] via-[#C8956C] to-transparent" />
+            <div className="flex items-start gap-4 mb-4">
+              <span className="text-[#A0522D] flex-shrink-0 mt-1"><Icon.map /></span>
+              <div>
+                <h3 className="text-[#2C3E5A] font-extrabold text-2xl mb-1">מפת שורשים אישית</h3>
+                <span className="text-[#A0522D] text-sm font-bold border border-[#A0522D]/35 px-2 py-0.5">כלול בחינם · ערך 197 ש&quot;ח</span>
+              </div>
+            </div>
+            <p className="text-[#2C3E5A]/68 text-lg leading-relaxed mb-3">
+              לפני שמתחילים — תקבלי מפת שורשים אישית של הילד שבחרת.
+              כלי שפיתחתי שממפה את שורשי ההיקשרות שלו — איפה הקשר זורם, ואיפה הוא חסום.
+            </p>
+            <p className="text-[#2C3E5A]/55 text-lg font-semibold">כדי שתגיעי למפגש 1 עם תמונה ברורה — לא עם ניחוש.</p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ══ BETWEEN SESSIONS ═════════════════════════════════════════════════ */}
+      <section className="py-16 lg:py-24 px-6 lg:px-16 bg-[#F5F4F2]">
+        <div className="max-w-3xl mx-auto">
+          <Label>בין מפגש למפגש</Label>
+          <motion.h2 className="text-2xl lg:text-3xl font-extrabold text-[#2C3E5A] mb-8"
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            הכל כלול. בלי הפתעות.
+            הליווי לא נגמר כשהזום נסגר
           </motion.h2>
-          <div className="grid sm:grid-cols-2 gap-4 mb-10">
+          <div className="grid sm:grid-cols-2 gap-4">
             {[
-              { Icon: Icon.video, title: "4 מפגשים מוקלטים", text: "כל מפגש מוקלט ומחכה לך — גם אם פספסת." },
-              { Icon: Icon.file, title: "סיכום כתוב לכל מפגש", text: "לא תצטרכי לרשום. הכל מסוכם ושלוח אלייך." },
-              { Icon: Icon.kit, title: "KIT משימות שבועי", text: "כלי קצר לעבודה בבית בין מפגש למפגש." },
-              { Icon: Icon.map, title: "כלי מיפוי שורשי היקשרות", text: "נשלח מיד אחרי ההרשמה. תגיעי למפגש 1 עם תמונה ברורה." },
-              { Icon: Icon.message, title: "קהילת וואטסאפ", text: "עם כל המשתתפות. לא לבד בדרך." },
-              { Icon: Icon.users, title: "קבוצה קטנה — 12 בלבד", text: "כדי שכל אחת תקבל תשומת לב אמיתית." },
+              { Icon: Icon.check, title: "משימה קצרה ומשוב אישי", text: "שליחה בין מפגש למפגש — ומשוב אמיתי, לא גנרי." },
+              { Icon: Icon.message, title: "וואטסאפ פתוח + שעה קבועה", text: "שאלות ישירות אלי ותמיכה בזמן אמת." },
+              { Icon: Icon.video, title: "סיכום כתוב לכל מפגש", text: "לא תצטרכי לרשום — הכל מסוכם ומחכה לך אחרי כל מפגש." },
+              { Icon: Icon.check, title: "KIT משימות שבועי", text: "כלי קצר לעבודה בבית בין מפגש למפגש." },
             ].map((item, i) => (
-              <motion.div key={i} className="bg-[#F5F4F2] border border-[#2C3E5A]/8 p-6 flex gap-4 items-start hover:border-[#A0522D]/30 transition-all duration-300"
-                initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }} transition={{ delay: i * 0.07 }}>
+              <motion.div key={i} className="bg-white border border-[#2C3E5A]/10 p-6 flex gap-4 items-start hover:border-[#A0522D]/40 transition-all duration-300"
+                initial={{ opacity: 0, x: 18 }} whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
                 <span className="flex-shrink-0 w-8 h-8 rounded-full bg-[#A0522D]/10 flex items-center justify-center text-[#A0522D]"><item.Icon /></span>
                 <div>
                   <p className="font-bold text-[#2C3E5A] text-lg mb-1">{item.title}</p>
@@ -550,36 +549,25 @@ export default function WorkshopPage() {
       </section>
 
       {/* ══ OUTCOME ══════════════════════════════════════════════════════════ */}
-      <section className="py-20 lg:py-32 px-6 lg:px-16 bg-[#F5F4F2]">
+      <section className="py-20 lg:py-32 px-6 lg:px-16 bg-white">
         <div className="max-w-3xl mx-auto">
-          <Label>עם מה יוצאים</Label>
+          <Label>מה תצאי איתו</Label>
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <p className="text-[#2C3E5A]/55 text-xl mb-3">את נכנסת עם:</p>
             <p className="text-2xl font-bold text-[#2C3E5A]/65 italic mb-10">&ldquo;מה אני עושה לא נכון עם הילד הזה?&rdquo;</p>
             <p className="text-[#2C3E5A]/55 text-xl mb-4">את יוצאת עם:</p>
+            <p className="text-2xl lg:text-3xl font-extrabold text-[#A0522D] leading-relaxed mb-6">
+              &ldquo;אני מבינה מה קורה לו. ויש לי כלים להגיב אחרת — גם כשזה קשה, גם אחרי פיצוץ.&rdquo;
+            </p>
+            <p className="text-[#2C3E5A]/65 text-lg leading-relaxed">
+              ועם עיניים שרואות את הילד שלך אחרת — את מי שהוא, לא את מה שהוא עושה.
+            </p>
           </motion.div>
-          <div className="space-y-4">
-            {[
-              "הבנה של מה קורה ביולוגית — ולמה הוא מתנהג ככה",
-              "כלים להגיב אחרת ברגע האמת, בלי לאבד את עצמך",
-              "דרך להציב גבולות שלא שוברים את הקשר",
-              "ידיעה מה עושים אחרי פיצוץ — כי זה קורה לכולנו",
-            ].map((item, i) => (
-              <motion.div key={i} className="flex items-start gap-4"
-                initial={{ opacity: 0, x: 14 }} whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }} transition={{ delay: i * 0.08 }}>
-                <span className="flex-shrink-0 mt-1 w-7 h-7 rounded-full bg-[#A0522D]/10 flex items-center justify-center text-[#A0522D]">
-                  <Icon.check />
-                </span>
-                <p className="text-[#2C3E5A] text-lg leading-relaxed">{item}</p>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </section>
 
       {/* ══ TESTIMONIALS ═════════════════════════════════════════════════════ */}
-      <section className="py-20 lg:py-32 px-6 lg:px-16 bg-white">
+      <section className="py-20 lg:py-32 px-6 lg:px-16 bg-[#F5F4F2]">
         <div className="max-w-3xl mx-auto">
           <Label>בקולן שלהן</Label>
           <motion.h2 className="text-4xl lg:text-5xl font-extrabold text-[#2C3E5A] mb-12"
@@ -590,7 +578,7 @@ export default function WorkshopPage() {
           <div className="space-y-7">
             {[
               { name: "סיון", color: "bg-[#A0522D]", text: "התהליך איתך לא היה דומה לשום תהליך שעשיתי בעבר. הרגשתי שמרימים אותי, רואים אותי, מכילים אותי ונותנים לי כלים פרקטיים מעולים שאני מרגישה בטוח ליישם. השינוי היה מאוד ניכר." },
-              { name: "עינב", color: "bg-[#C8956C]", text: "תהליך מלמד ומעשיר. אנחנו לומדים להיות הורים טובים יותר וכמובן שיש לנו עוד דרך לעשות. תודה על הליווי — מההתחלה היית לנו כמו כף יד." },
+              { name: "עינב", color: "bg-[#C8956C]", text: "תודה על הליווי, מההתחלה היית לנו כמו כפפה ליד." },
               { name: "רגינה", color: "bg-[#2C3E5A]", text: "על הליווי מהרגע הראשון ועד הרגע האחרון, אין מילים להודות לך. אנחנו מרגישים שהדברים שינו אותנו." },
             ].map((t, i) => (
               <motion.div key={i} className="flex gap-4 items-start"
@@ -611,20 +599,20 @@ export default function WorkshopPage() {
       </section>
 
       {/* ══ LOGISTICS ════════════════════════════════════════════════════════ */}
-      <section className="py-16 px-6 lg:px-16 bg-[#F5F4F2]">
+      <section className="py-16 px-6 lg:px-16 bg-white">
         <div className="max-w-3xl mx-auto">
           <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
             variants={{ visible: { transition: { staggerChildren: 0.07 } } }}
             initial="hidden" whileInView="visible" viewport={{ once: true }}>
             {[
               { Icon: Icon.calendar, label: "מועד", value: "ימי ראשון, 20:45–22:00" },
-              { Icon: Icon.monitor, label: "פלטפורמה", value: "גוגל מיט — נוח מהבית" },
+              { Icon: Icon.monitor, label: "פלטפורמה", value: "זום — נוח מהבית" },
               { Icon: Icon.video, label: "הקלטות", value: "כל מפגש מוקלט ומחכה לך" },
               { Icon: Icon.calendar, label: "תחילה", value: "23.05.26" },
-              { Icon: Icon.users, label: "קבוצה", value: "12 משתתפות בלבד" },
+              { Icon: Icon.users, label: "קבוצה", value: "12 אמהות בלבד" },
             ].map((item, i) => (
               <motion.div key={i} variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }}
-                className="bg-white p-5 flex gap-4 items-start hover:bg-[#ede9e4] transition-colors border border-[#2C3E5A]/6">
+                className="bg-[#F5F4F2] p-5 flex gap-4 items-start hover:bg-[#ede9e4] transition-colors">
                 <span className="text-[#A0522D] flex-shrink-0 mt-0.5"><item.Icon /></span>
                 <div>
                   <p className="text-[#2C3E5A]/40 text-xs font-bold uppercase tracking-wider mb-0.5">{item.label}</p>
@@ -645,9 +633,11 @@ export default function WorkshopPage() {
 
         <div ref={priceRef} className="max-w-2xl mx-auto relative z-10 text-center">
           <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <p className="text-white/35 text-base mb-1">ערך המעבדה</p>
+            <p className="text-white/28 text-3xl font-bold line-through mb-5">797 ש&quot;ח</p>
             <p className="text-[#C8956C] text-lg font-medium mb-4">מחזור ראשון · 12 מקומות בלבד</p>
 
-            <motion.div className="inline-block mb-6"
+            <motion.div className="inline-block mb-4"
               initial={{ scale: 0.75, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }} transition={{ type: "spring", stiffness: 180, damping: 18, delay: 0.3 }}>
               <div className="px-12 py-8 relative"
@@ -657,11 +647,10 @@ export default function WorkshopPage() {
               </div>
             </motion.div>
 
-            <p className="text-white/55 text-base mb-2">לשם השוואה — פגישה אחת בקליניקה = 300 ש&quot;ח</p>
             <p className="text-white/65 text-lg leading-relaxed mb-4 max-w-lg mx-auto">
-              כולל: 4 מפגשי גוגל מיט + הקלטות + סיכומים כתובים + KIT משימות + כלי מיפוי + קהילת וואטסאפ
+              כולל: 4 מפגשי זום + מפת שורשים אישית + ליווי בוואטסאפ + משוב אישי על המשימות + סיכומים כתובים + KIT משימות שבועי.
             </p>
-            <div className="inline-block border border-[#C8956C]/40 text-[#C8956C] text-sm font-bold px-5 py-2 tracking-wider mb-10">12 מקומות בלבד · מתחילים 23.05</div>
+            <div className="inline-block border border-[#C8956C]/40 text-[#C8956C] text-sm font-bold px-5 py-2 tracking-wider mb-10">המחיר הזה לא יחזור</div>
             <br />
             <CTAButton variant="light" />
           </motion.div>
@@ -678,10 +667,9 @@ export default function WorkshopPage() {
           </motion.h2>
           <div className="border-t border-[#2C3E5A]/10">
             <FAQItem q="זה מתאים גם לאבות?" a="כן. כל הורה שרוצה להבין מה קורה בו מוזמן." />
-            <FAQItem q="מה אם פספסתי מפגש?" a="כל מפגש מוקלט ומחכה לך. לא תפספסי כלום." />
+            <FAQItem q="מה אם פספסתי מפגש?" a="יהיה רישום של כל מפגש, מחכה לך." />
             <FAQItem q="יש החזר כספי?" a="אין — אבל יש אחריות שלי לתת לך ערך אמיתי בכל מפגש." />
-            <FAQItem q="מה ההבדל בינך לבין ספר של נויפלד?" a="ספר נותן ידע. כאן עובדים על המיינדסט שלך — עם כלים פרקטיים, תרגול חי, ומשוב. זה שונה לגמרי." />
-            <FAQItem q="הילד שלי בן 7 — זה מתאים?" a="גיל 7-8 הוא גיל הגשר המוקדם. כן, רלוונטי לחלוטין." />
+            <FAQItem q="מה ההבדל בינך לבין ספר של נויפלד?" a="ספר נותן ידע. אני עובדת על המיינדסט שלך — עם כלי אימון, תרגילים חיים, ומשוב אישי. זה שונה לגמרי." />
           </div>
         </div>
       </section>
@@ -713,7 +701,7 @@ export default function WorkshopPage() {
           </motion.h2>
           <motion.p className="text-[#2C3E5A]/45 text-xl mb-10"
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
-            שמרי לי מקום במעבדה
+            שרייני לי מקום במעבדה
           </motion.p>
 
           <AnimatePresence mode="wait">
@@ -772,7 +760,7 @@ export default function WorkshopPage() {
                   )}
                 </motion.button>
 
-                <p className="text-[#2C3E5A]/28 text-sm text-center">12 מקומות בלבד · מתחילים 23.05</p>
+                <p className="text-[#2C3E5A]/28 text-sm text-center">12 מקומות בלבד · המחיר הזה לא יחזור</p>
               </motion.form>
             )}
           </AnimatePresence>
