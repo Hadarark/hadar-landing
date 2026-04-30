@@ -810,7 +810,7 @@ export default function WorkshopPage() {
                 <div className="absolute -inset-2 bg-gradient-to-br from-[#A0522D] to-[#C8956C] opacity-20 rounded-full blur-lg" />
                 <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-[#C8956C]/30">
                   <Image
-                    src="/hadar.jpg"
+                    src="/hadar-profile.png"
                     alt="הדר ארקדש"
                     fill
                     className="object-cover object-top"
@@ -853,7 +853,7 @@ export default function WorkshopPage() {
                   בעולם שרץ מהר מדי — אנחנו לא מוצאות שעה אחת לעצור, לחקור, להבין מה בעצם קורה. ואז מגיע הערב, והריב, ותחושת &ldquo;למה שוב ככה?&rdquo; — ואין לנו כלים.
                 </p>
                 <p>
-                  אני מאמינה ששעה אחת של התמקדות יכולה לחולל שינוי אמיתי. לא בגלל טכניקה. בגלל <strong className="text-[#2C3E5A]">ידיעה</strong>. בגלל שמרשות לעצמנו להיות בתנועה — לא מושלמות, אבל ערות.
+                  אני מאמינה ששעה אחת של התמקדות יכולה לחולל שינוי אמיתי. לא בגלל טכניקה. בגלל <strong className="text-[#2C3E5A]">ידיעה</strong>. בגלל שאנחנו מרשות לעצמנו להיות בתנועה — לא מושלמות, אבל ערות.
                 </p>
                 <div className="space-y-2 border-r-2 border-[#A0522D]/30 pr-4">
                   <p>אין נכון ולא נכון שמתאים לכולן — רק מה שמתאים לך, לבית שלך, לילד שלך.</p>
