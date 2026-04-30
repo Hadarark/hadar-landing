@@ -218,13 +218,13 @@ export default function WorkshopPage() {
         <motion.div
           className="absolute inset-0"
           style={{
-            background: "linear-gradient(150deg, #3b2e24 0%, #6b4c35 35%, #c8956c 70%, #e8d5b0 100%)",
+            background: "linear-gradient(150deg, #7a5540 0%, #a07850 35%, #c8956c 70%, #f0e5c8 100%)",
           }}
           animate={{
             background: [
-              "linear-gradient(150deg, #3b2e24 0%, #6b4c35 35%, #c8956c 70%, #e8d5b0 100%)",
-              "linear-gradient(150deg, #2e2318 0%, #7a5540 35%, #c8956c 65%, #dfc99a 100%)",
-              "linear-gradient(150deg, #3b2e24 0%, #6b4c35 35%, #c8956c 70%, #e8d5b0 100%)",
+              "linear-gradient(150deg, #7a5540 0%, #a07850 35%, #c8956c 70%, #f0e5c8 100%)",
+              "linear-gradient(150deg, #6b4530 0%, #9a7045 35%, #c8956c 65%, #ead5a0 100%)",
+              "linear-gradient(150deg, #7a5540 0%, #a07850 35%, #c8956c 70%, #f0e5c8 100%)",
             ],
           }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
@@ -692,9 +692,9 @@ export default function WorkshopPage() {
               },
               {
                 Icon: Icon.message,
-                title: "ליווי צמוד בוואטסאפ",
-                tag: "4 שבועות · שעות מוגדרות מראש",
-                text: "המקום לנתח סיטואציות בזמן אמת, לשאול, לקבל כלים ולהחיל בשטח. מענה שלי בשעות קבועות ומוגדרות מראש — כדי שתדעי שיש מי שעונה.",
+                title: "ליווי בוואטסאפ",
+                tag: "4 שבועות",
+                text: "המקום לנתח סיטואציות בזמן אמת, לשאול, לקבל כלים ולהחיל בשטח — כדי שתרגישי בנוח לשאול בכל שעה.",
               },
               {
                 Icon: Icon.heart,
@@ -830,20 +830,11 @@ export default function WorkshopPage() {
                 נעים להכיר, אני הדר
               </motion.h2>
               <motion.p
-                className="text-[#2C3E5A]/40 text-base mb-4"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-              >
-                נשואה לאוראל, ואמא לדור (9.5), עומר (7.5) וארי (3.5).
-              </motion.p>
-              <motion.p
                 className="text-[#2C3E5A] font-semibold text-base mb-6 border-r-2 border-[#A0522D] pr-4"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.15 }}
+                transition={{ delay: 0.1 }}
               >
                 מדריכת הורים מוסמכת בגישה ההיקשרותית-התפתחותית ויועצת זוגית, בוגרת אוניברסיטת בר-אילן.
               </motion.p>
@@ -856,11 +847,10 @@ export default function WorkshopPage() {
                 transition={{ delay: 0.2 }}
               >
                 <p>
-                  לפני כמה שנים התחלתי לחוות את זה בעצמי. קונפליקטים חוזרים עם דור, תחושה של ריחוק ממנה, חוסר אונים אמיתי. התחלתי לחפש, ועולם נפתח.
+                  הגעתי לעולם הזה לא מספרים — מהחיים. הייתה תקופה שבה הרגשתי שהילדה שלי מתרחקת ממני. ריבים שחוזרים על עצמם, שיחות שנגמרות בדלת טרוקה, ותחושה שאני עושה הכל נכון ובכל זאת משהו בינינו נשבר. חיפשתי, למדתי — ועולם שלם נפתח.
                 </p>
                 <p>
-                  הקונפליקטים לא נעלמו לגמרי. אני עדיין חווה אותם.
-                  אבל יש לי כיום כלים, ידע, והבנה שמשנה את כל מה שקורה בינינו. זה לא שהכל נהיה פתאום קל, זה שאני כבר לא לבד בתוך זה.
+                  הקונפליקטים לא נעלמו. אני עדיין חווה אותם — גם עכשיו, כשאמא וגם כמדריכת הורים. אבל יש לי כיום משהו שלא היה לי אז: הבנה של מה באמת קורה. ומהבנה צומחת הרגיעה.
                 </p>
                 <p>
                   אני לא מאמינה באילוף ילדים, בטבלאות התנהגות, בעונשים שרק מרחיקים. אני מאמינה שכשהילד מרגיש בטוח בקשר, ההתנהגות מתיישרת מעצמה.
@@ -918,9 +908,6 @@ export default function WorkshopPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <p className="text-white/40 text-base mb-1">ערך המעבדה</p>
-            <p className="text-white/30 text-3xl font-bold line-through mb-6">797 ש&quot;ח</p>
-
             <p className="text-white/70 text-xl mb-3">במחזור הראשון, 10 מקומות בלבד:</p>
 
             <motion.p
@@ -937,7 +924,7 @@ export default function WorkshopPage() {
             <p className="text-white/60 text-lg max-w-xl mx-auto mb-10 leading-relaxed">
               <span className="text-white font-extrabold text-xl">בגלל שזה המחזור הראשון — במקום 597 ש&quot;ח.</span>
               <br />
-              עבור חודש שלם של ליווי, 4 מפגשים, KIT צמוד וכלי אבחון אישי.
+              עבור חודש שלם של ליווי, 4 מפגשים, KIT ליווי וכלי אבחון אישי.
               <br />
               <span className="text-[#C8956C] font-bold">והכי חשוב — להחזרת תחושת הסנטר והידיעה אלייך.</span>
             </p>
