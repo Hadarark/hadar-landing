@@ -133,6 +133,12 @@ const CSS = `
   .mg-submit-arrow{font-family:"Frank Ruhl Libre",serif;font-size:20px;}
   .mg-legal{margin-top:14px;font-size:11px;color:#6b6f74;line-height:1.5;}
   .mg-legal a{color:#b16039;text-decoration:underline;}
+  .mg-consent{display:flex;align-items:flex-start;gap:10px;margin-top:4px;}
+  .mg-consent input[type="checkbox"]{
+    width:16px;height:16px;flex-shrink:0;margin-top:2px;
+    accent-color:#b16039;cursor:pointer;
+  }
+  .mg-consent label{font-size:12px;color:#6b6f74;line-height:1.5;cursor:pointer;}
 
   /* SUCCESS */
   .mg-success{
@@ -314,6 +320,12 @@ function LeadForm({
           value={form.email}
           onChange={(e) => setForm({ ...form, email: e.target.value })}
         />
+      </div>
+      <div className="mg-consent">
+        <input type="checkbox" id={`${id}-consent`} required />
+        <label htmlFor={`${id}-consent`}>
+          אני מסכימה לקבל תכנים ועדכונים מהדר ארקדש. ניתן להסיר את עצמך בכל רגע.
+        </label>
       </div>
       <button type="submit" className="mg-submit" disabled={status === "loading"}>
         <span>{status === "loading" ? "שולחת..." : "שלחי לי את החוברת"}</span>
