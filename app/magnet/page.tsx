@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 
 const CSS = `
   @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Caveat:wght@400;600&display=swap');
@@ -279,7 +279,7 @@ function LeadForm({
   status: Status;
   onSubmit: (e: React.FormEvent) => void;
   dark?: boolean;
-  legalText?: string;
+  legalText?: ReactNode;
 }) {
   if (status === "success") {
     return (
@@ -323,7 +323,10 @@ function LeadForm({
         <p style={{ color: "#b16039", fontSize: 12, margin: "4px 0 0" }}>משהו השתבש, נסי שוב.</p>
       )}
       <p className="mg-legal">
-        {legalText ?? "המייל שלך נשמר אצלנו בלבד. אפשר להסיר את עצמך בכל רגע, בלחיצה אחת."}
+        {legalText ?? (
+          <>המייל שלך נשמר אצלנו בלבד. אפשר להסיר את עצמך בכל רגע, בלחיצה אחת.{" "}
+          <a href="/privacy">מדיניות פרטיות</a></>
+        )}
       </p>
     </form>
   );
@@ -534,7 +537,7 @@ export default function MagnetPage() {
               status={status2}
               onSubmit={(e) => { e.preventDefault(); submit(form2, setStatus2); }}
               dark
-              legalText="בלחיצה את מאשרת קבלת החוברת ועדכונים מעבדת הגשר. אפשר להסיר את עצמך בכל רגע."
+              legalText={<>בלחיצה את מאשרת קבלת החוברת ועדכונים מעבדת הגשר. אפשר להסיר את עצמך בכל רגע.{" "}<a href="/privacy">מדיניות פרטיות</a></>}
             />
           </div>
         </div>
