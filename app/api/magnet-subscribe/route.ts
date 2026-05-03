@@ -25,6 +25,11 @@ async function addToList(contactId: number) {
   });
 }
 
+function normalizeEmail(email: string): string {
+  // Strip Gmail +alias so orelarkadash7+test@gmail.com matches orelarkadash7@gmail.com
+  return email.toLowerCase().replace(/\+[^@]+(?=@)/, "");
+}
+
 async function findContactByEmail(email: string): Promise<number | null> {
   const res = await fetch(
     `https://rest.smoove.io/v1/Contacts?pageSize=5000`,
@@ -32,8 +37,9 @@ async function findContactByEmail(email: string): Promise<number | null> {
   );
   if (!res.ok) return null;
   const contacts: { id: number; email: string }[] = await res.json();
+  const normalizedLookup = normalizeEmail(email);
   const match = contacts.find(
-    (c) => c.email?.toLowerCase() === email.toLowerCase()
+    (c) => c.email && normalizeEmail(c.email) === normalizedLookup
   );
   return match?.id ?? null;
 }
