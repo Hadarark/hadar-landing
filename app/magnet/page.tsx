@@ -505,7 +505,7 @@ export default function MagnetPage() {
               אני לא מאמינה במתכונים. אני מאמינה שכשמחזירים לאמא את היכולת לקרוא את הילד שלה, היא יודעת מה לעשות. החוברת הזו היא הצעד הראשון.
             </p>
             <div className="mg-sig">
-              <img src="/signature.png" alt="נשיקות, הדר" style={{ height: 52, width: "auto" }} />
+              <img src="/signature.png" alt="נשיקות, הדר" style={{ height: 80, width: "auto", filter: "contrast(1.3) brightness(0.85)" }} />
               <div className="mg-role">
                 מדריכת הורים בגישה ההתפתחותית-היקשרותית<br />
                 יועצת זוגית EFT
