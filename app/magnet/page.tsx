@@ -271,6 +271,7 @@ function LeadForm({
   status,
   onSubmit,
   dark,
+  legalText,
 }: {
   id: string;
   form: { name: string; email: string };
@@ -278,6 +279,7 @@ function LeadForm({
   status: Status;
   onSubmit: (e: React.FormEvent) => void;
   dark?: boolean;
+  legalText?: string;
 }) {
   if (status === "success") {
     return (
@@ -292,7 +294,7 @@ function LeadForm({
   return (
     <form className="mg-form" onSubmit={onSubmit}>
       <div className="mg-field">
-        <label htmlFor={`${id}-name`}>שם פרטי שלך</label>
+        <label htmlFor={`${id}-name`}>השם הפרטי שלך</label>
         <input
           id={`${id}-name`}
           type="text"
@@ -321,8 +323,7 @@ function LeadForm({
         <p style={{ color: "#b16039", fontSize: 12, margin: "4px 0 0" }}>משהו השתבש, נסי שוב.</p>
       )}
       <p className="mg-legal">
-        הפרטים שלך נשמרים אצלנו בסוד. אפשר להסיר את עצמך בכל רגע, בקלות.{" "}
-        <a href="/privacy">מדיניות פרטיות</a>
+        {legalText ?? "המייל שלך נשמר אצלנו בלבד. אפשר להסיר את עצמך בכל רגע, בלחיצה אחת."}
       </p>
     </form>
   );
@@ -370,9 +371,9 @@ export default function MagnetPage() {
             <span className="mg-brand-name">מעבדת הגשר</span>
           </a>
           <nav className="mg-nav">
-            <a href="#about">על הכותבת</a>
+            <a href="#about">על הדר</a>
             <a href="#inside">מה בפנים</a>
-            <a href="#cta" className="mg-pill">הורידי חינם</a>
+            <a href="#cta" className="mg-pill">הורידי בחינם</a>
           </nav>
         </div>
       </header>
@@ -380,21 +381,20 @@ export default function MagnetPage() {
       {/* HERO */}
       <section className="mg-hero">
         <div className="mg-hero-copy">
-          <div className="mg-eyebrow">חוברת חינמית · הורדה מיידית</div>
+          <div className="mg-eyebrow">חוברת חינמית · להורדה מיידית</div>
           <h1 className="mg-h1">
             מה באמת<br />
             קורה <em>ביניכם?</em>
           </h1>
           <p className="mg-lede">
-            חמש שאלות שיגרמו לך לקרוא את הילד שלך מחדש.
-            לא ספר, לא הרצאה מוסרת. רק חוברת.
+            חמש שאלות שיעזרו לך לקרוא את הילד שלך מחדש. ללא ציון, ביניך לבין עצמך. חלון לרגעים שאת מפספסת בלי לשים לב.
           </p>
           <div className="mg-meta">
             <span>16 עמודים</span>
             <span className="mg-dot" />
             <span>קריאה של 12 דקות</span>
             <span className="mg-dot" />
-            <span>PDF מודפס</span>
+            <span>PDF להדפסה</span>
           </div>
         </div>
 
@@ -406,9 +406,9 @@ export default function MagnetPage() {
               <div className="t-num">מעבדת הגשר</div>
             </div>
             <div>
-              <div className="mg-meta-kicker">קבלי חינם</div>
-              <div className="mg-meta-ttl">חוברת שתגרום לך<br />לחשוב מחדש.</div>
-              <div className="mg-meta-sub">לא ספר, לא הרצאה. רק חוברת.</div>
+              <div className="mg-meta-kicker">קבלי לתיבה</div>
+              <div className="mg-meta-ttl">החוברת שמתחילה<br />את השיחה.</div>
+              <div className="mg-meta-sub">בלי ספאם, בלי הרצאות מכירה. רק החוברת.</div>
             </div>
           </div>
           <LeadForm
@@ -425,19 +425,19 @@ export default function MagnetPage() {
       <section className="mg-section" id="foryou">
         <div className="mg-wrap mg-foryou">
           <div className="mg-foryou-intro">
-            <div className="mg-section-eyebrow">למי מיועד</div>
-            <h2 className="mg-section-title">את מרגישה שמשהו השתנה בילד שלך.</h2>
+            <div className="mg-section-eyebrow">בשבילך אם</div>
+            <h2 className="mg-section-title">את מרגישה שמשהו השתנה בילד שלך</h2>
             <p>
-              גיל הגשר (7–11) הוא לא גיל ההתבגרות. זה גיל שאף אחד לא מסביר — עם שינויים ביולוגיים אמיתיים שמשפיעים על הדינמיקה בינכם. החוברת הזו לא תיתן טכניקות. היא תיתן לך חלון אחר לקרוא מה שקורה — ומשם הדרך משתנה.
+              גיל הגשר (7–11) מערבב את הקלפים, ואת מוצאת את עצמך מגיבה אחרת ממה שהיה מתאים עד אתמול. החוברת הזו לא תגיד לך מה לעשות. היא תעזור לך לראות מה כבר קורה ביניכם — ומשם להבין מה צריך אחרת.
             </p>
           </div>
           <div className="mg-foryou-list">
             {[
-              "ילד שלך בין 8 ל-12, ומרגישה שהוא הולך ורחוק.",
-              "אותם מצבים חוזרים — שיחה, עימות, דלת טרוקה.",
-              "את מרגישה שהוא מספר לחברים שלו מה שלא מספר לך.",
-              "קראת ספרים, ניסית גישות — ועדיין לא נושם לך.",
-              "את לא רוצה מתכוניות. את רוצה את הילד שלך בחזרה.",
+              "הילד שלך בן 8 עד 12, ופתאום הוא נראה לך זר.",
+              "השיחות בבית הפכו לעדכוני סטטוס. שאלת, ענה, סוף.",
+              "את חוששת שהוא מספר לחברים דברים שלא יספר לך.",
+              "קראת ספרי הורות, האזנת לפודקאסטים, וזה עדיין לא ממש זז.",
+              "את לא רוצה תוכנית טיפולית. את רוצה את הילד שלך בחזרה.",
             ].map((t, i) => (
               <div className="mg-row" key={i}>
                 <div className="mg-row-n">0{i + 1}</div>
@@ -454,30 +454,30 @@ export default function MagnetPage() {
           <div className="mg-inside-top">
             <div>
               <div className="mg-section-eyebrow">מה יש בפנים</div>
-              <h2 className="mg-section-title">לא מדריך. סקרי את המצב.</h2>
+              <h2 className="mg-section-title">לא טיפים. סקרנות מחדש.</h2>
             </div>
             <p className="mg-inside-lede">
-              החוברת מחולקת לשלושה חלקים: הסיפור שהובאתי בתוכי, קצת ידע על מה שעובר על הילד שלך ביולוגית ונוירולוגית בגיל הזה, וחמש שאלות שיגרמו לך לעצור ולראות מה שאולי לא ראית.
+              החוברת בנויה משלושה חלקים: הסיפור שמאחורי הגישה, ההסבר המדעי לתקופה הזו של הילד, וחמש שאלות פשוטות שאת יכולה לשאול את עצמך אחרי שהוא חוזר הביתה.
             </p>
           </div>
           <div className="mg-grid">
             <article className="mg-cell">
               <div className="mg-cell-num">01</div>
-              <div className="mg-cell-ttl">הסיפור<br />של אחת.</div>
-              <div className="mg-cell-body">לאן תחתית הרגשות שלך — כשהיה קשר, וכשבא הריחוק. לא ביוגרפיה. סיפור אחד שאולי מוכר.</div>
+              <div className="mg-cell-ttl">הסיפור<br />של הדר.</div>
+              <div className="mg-cell-body">איך התחלתי לראות שהילדה שלי לא מקושרת אליי, ומה למדתי כשהפסקתי לחפש מתכון מוכן.</div>
               <div className="mg-cell-tag">סיפור אישי</div>
             </article>
             <article className="mg-cell">
               <div className="mg-cell-num">02</div>
-              <div className="mg-cell-ttl">קצת ידע על<br />גיל הגשר.</div>
-              <div className="mg-cell-body">שלושה תהליכים נוירולוגיים-התפתחותיים שעוברים עליו עכשיו. לא קשורים למחלה, לא קשורים לאופי.</div>
+              <div className="mg-cell-ttl">קצת מדע על<br />גיל הגשר.</div>
+              <div className="mg-cell-body">שלוש דינמיקות נוירולוגיות והתפתחותיות שעוברות עליו עכשיו. הן לא קשורות אלייך, הן קשורות לגיל.</div>
               <div className="mg-cell-tag">נוירולוגיה</div>
             </article>
             <article className="mg-cell">
               <div className="mg-cell-num">03</div>
               <div className="mg-cell-ttl">חמש שאלות<br />פשוטות.</div>
-              <div className="mg-cell-body">שאלות שיגרמו לך לעצור ולחשוב. לא נותנות תשובות — פותחות חלון על הדינמיקה שביניכם.</div>
-              <div className="mg-cell-tag">תרגיל</div>
+              <div className="mg-cell-body">חמש שאלות שאת שואלת את עצמך, לא אותו. שאלות שמחזירות לך את היכולת לקרוא את מה שקורה בלי להסיק מסקנות מוקדמות.</div>
+              <div className="mg-cell-tag">תרגול</div>
             </article>
           </div>
         </div>
@@ -488,24 +488,24 @@ export default function MagnetPage() {
         <div className="mg-wrap mg-about">
           <div
             className="mg-portrait"
-            style={{ backgroundImage: "url('/hadar.jpg')" }}
+            style={{ backgroundImage: "url('/hadar-portrait.png')" }}
             role="img"
             aria-label="הדר ארקדש"
           />
           <div>
             <div className="mg-section-eyebrow">מי כותבת לך</div>
-            <h2 className="mg-about-h2">אני הדר.<br />נפלתי גם אני.</h2>
+            <h2 className="mg-about-h2">אני הדר.<br />נעים מאוד.</h2>
             <p className="mg-about-p">
-              לפני כמה שנים עמדתי מול הבת שלי, מותשת ומרוקנת, ומשהו נשבר. לא צרחתי כי היא עשתה משהו נורא — צרחתי כי לא הבנתי מה קורה בינינו. כי כל כלי שניסיתי לא עבד.
+              אני מלווה אמהות בגיל הגשר — התקופה שבה הילד עובר מילד לנער, והקרקע מתחת לרגליים שלך זזה. הגעתי לכאן מהמקום ההוא — הייתי אמא שהיתה בטוחה שהיא עושה הכול נכון, וגיליתי שהילדה שלי נוסעת ממני. החלטתי להפסיק להיות עיוורת — ומאז המלאכה הזו הפכה לליבה שלי.
             </p>
             <p className="mg-about-p">
-              אותו רגע לקח אותי למסע. למדתי מדעי מוח, היקשרות, EFT. הבנתי מה קורה בגיל 7–11 — הגיל שאף אחד לא מסביר באמת. ואת מה שלמדתי — אני מעבירה לך. כדי שייקח לך הרבה פחות זמן.
+              אני לא מאמינה במתכונים. אני מאמינה שכשמחזירים לאמא את היכולת לקרוא את הילד שלה, היא יודעת מה לעשות. החוברת הזו היא הצעד הראשון.
             </p>
             <div className="mg-sig">
-              <div className="mg-signature">בהערכה, הדר</div>
+              <div className="mg-signature">נשיקות, הדר</div>
               <div className="mg-role">
-                מדריכת הורים בגישה ההיקשרותית-התפתחותית<br />
-                ייעוץ זוגי בשיטת EFT
+                מדריכת הורים בגישה ההתפתחותית-היקשרותית<br />
+                יועצת זוגית EFT
               </div>
             </div>
           </div>
@@ -516,13 +516,13 @@ export default function MagnetPage() {
       <section className="mg-final" id="cta">
         <div className="mg-wrap mg-final-wrap">
           <div>
-            <div className="mg-section-eyebrow">חוברת חינם</div>
+            <div className="mg-section-eyebrow">החוברת מחכה לך</div>
             <h2 className="mg-final-h2">
               חמש שאלות.<br />
               רגע אחד <em>של שקט.</em>
             </h2>
             <p className="mg-final-lede">
-              לפעמים לא צריך קורס. לא צריך להתחייב לכלום. רק לעצור, לשאול את עצמך שאלה אחת, ולראות מה עולה. משם — הדברים מתחילים לזוז.
+              משאירה את המייל ומקבלת את החוברת לתיבה תוך דקה. אם תרצי, מצרפת אותך גם לאתגר קוד הגשר — שלושה ימים חינמיים שבהם נלמד איך להתנהל בשעות הקשות. זה בידיים שלך.
             </p>
           </div>
           <div className="mg-final-card">
@@ -534,6 +534,7 @@ export default function MagnetPage() {
               status={status2}
               onSubmit={(e) => { e.preventDefault(); submit(form2, setStatus2); }}
               dark
+              legalText="בלחיצה את מאשרת קבלת החוברת ועדכונים מעבדת הגשר. אפשר להסיר את עצמך בכל רגע."
             />
           </div>
         </div>
@@ -544,7 +545,7 @@ export default function MagnetPage() {
         <div className="mg-footer-inner">
           <div>© מעבדת הגשר · הדר ארקדש</div>
           <div className="mg-footer-links">
-            <a href="/privacy">מדיניות פרטיות</a>
+            <a href="/privacy">מדיניות ותקנון</a>
             <a href="mailto:hadararkadash@gmail.com">צרי קשר</a>
           </div>
         </div>
