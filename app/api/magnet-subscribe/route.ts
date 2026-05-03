@@ -8,11 +8,20 @@ const HEADERS = {
   Authorization: `Bearer ${SMOOVE_API_KEY}`,
 };
 
+// Smoove rejects requests with non-ASCII characters in JSON bodies.
+// Encoding to \uXXXX sequences produces valid JSON that Smoove can parse.
+function escapeForSmoove(obj: object): string {
+  return JSON.stringify(obj).replace(
+    /[^\x00-\x7F]/g,
+    (c) => "\\u" + c.charCodeAt(0).toString(16).padStart(4, "0")
+  );
+}
+
 async function addToList(contactId: number) {
   await fetch(`https://rest.smoove.io/v1/Contacts/${contactId}`, {
     method: "PUT",
     headers: HEADERS,
-    body: JSON.stringify({ lists_ToSubscribe: [MAGNET_LIST_ID] }),
+    body: escapeForSmoove({ lists_ToSubscribe: [MAGNET_LIST_ID] }),
   });
 }
 
@@ -43,7 +52,7 @@ export async function POST(req: NextRequest) {
     const res = await fetch("https://rest.smoove.io/v1/Contacts", {
       method: "POST",
       headers: HEADERS,
-      body: JSON.stringify({
+      body: escapeForSmoove({
         email,
         firstName,
         lastName,
