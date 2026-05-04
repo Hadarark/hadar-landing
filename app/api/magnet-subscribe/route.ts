@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const SMOOVE_API_KEY = "e052d9e6-fc9b-4133-b284-3b22d6af1696";
 const MAGNET_LIST_ID = 1133142;
+const NOTIFY_EMAIL = "hadararkadash@gmail.com";
 
 const HEADERS = {
   "Content-Type": "application/json",
@@ -26,7 +27,6 @@ async function addToList(contactId: number) {
 }
 
 function normalizeEmail(email: string): string {
-  // Strip Gmail +alias so orelarkadash7+test@gmail.com matches orelarkadash7@gmail.com
   return email.toLowerCase().replace(/\+[^@]+(?=@)/, "");
 }
 
@@ -42,6 +42,29 @@ async function findContactByEmail(email: string): Promise<number | null> {
     (c) => c.email && normalizeEmail(c.email) === normalizedLookup
   );
   return match?.id ?? null;
+}
+
+async function notifyManualAdd(name: string, email: string) {
+  const resendKey = process.env.RESEND_API_KEY;
+  if (!resendKey) return;
+  await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${resendKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from: "onboarding@resend.dev",
+      to: NOTIFY_EMAIL,
+      subject: "נרשמת לחוברת — יש להוסיף ידנית לסמוב",
+      html: `<div dir="rtl" style="font-family:Arial,sans-serif;font-size:15px;line-height:1.6">
+        <p>מישהי הורידה את החוברת אבל לא נוספה אוטומטית לרשימה בסמוב.</p>
+        <p><strong>שם:</strong> ${name}<br/>
+        <strong>מייל:</strong> ${email}</p>
+        <p>יש להוסיף ידנית לרשימה 1133142 בסמוב.</p>
+      </div>`,
+    }),
+  });
 }
 
 export async function POST(req: NextRequest) {
@@ -79,6 +102,9 @@ export async function POST(req: NextRequest) {
       const contactId = await findContactByEmail(email);
       if (contactId) {
         await addToList(contactId);
+      } else {
+        // Contact exists in Smoove but not findable via API — notify manually
+        await notifyManualAdd(name, email);
       }
     }
   } catch (err) {
