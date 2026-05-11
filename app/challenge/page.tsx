@@ -321,13 +321,15 @@ const CSS = `
 
   .ch-meta-row{
     display:flex;justify-content:center;flex-wrap:wrap;
-    gap:14px 22px;margin:0 auto 36px;
-    font-size:13px;letter-spacing:.14em;text-transform:uppercase;
-    color:rgba(229,226,222,.78);font-weight:500;
+    gap:10px 12px;margin:0 auto 36px;
   }
-  .ch-meta-dot{
-    width:4px;height:4px;border-radius:50%;
-    background:#dda96a;display:inline-block;align-self:center;
+  .ch-meta-pill{
+    padding:8px 20px;
+    border:1px solid rgba(229,226,222,.4);
+    border-radius:999px;
+    font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+    color:rgba(229,226,222,.9);font-weight:500;
+    background:rgba(255,255,255,.04);
   }
 
   /* FORM (shared) */
@@ -743,11 +745,9 @@ export default function ChallengePage() {
           </motion.h2>
 
           <motion.div className="ch-meta-row" variants={fadeUp} transition={{ duration: 0.6 }}>
-            <span>חינמי</span>
-            <span className="ch-meta-dot" />
-            <span>קצר</span>
-            <span className="ch-meta-dot" />
-            <span>פרקטי</span>
+            <span className="ch-meta-pill">חינמי</span>
+            <span className="ch-meta-pill">קצר</span>
+            <span className="ch-meta-pill">פרקטי</span>
           </motion.div>
 
           <motion.div variants={fadeUp} transition={{ duration: 0.7 }}>
