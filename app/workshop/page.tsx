@@ -3,6 +3,7 @@
 import { motion, useInView, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
+import { trackEvent } from "@/lib/fbpixel";
 
 // ─── Palette ─────────────────────────────────────────────────────────────────
 // Terracotta: #A0522D  |  Gold: #C8956C  |  Olive: #6B7A5A  |  Navy: #2C3E5A
@@ -176,6 +177,11 @@ export default function WorkshopPage() {
       localStorage.setItem("registeredEmail", formData.email);
       if (data?.smooveId) localStorage.setItem("smooveId", String(data.smooveId));
       setSubmitted(true);
+      trackEvent("InitiateCheckout", {
+        value: 299,
+        currency: "ILS",
+        content_name: "workshop_signup",
+      });
       setTimeout(() => {
         window.location.href =
           "https://secure.cardcom.solutions/EA/EA5/lpskTbNqVUGzncHXQmNZA/PaymentSP";

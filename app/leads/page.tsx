@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { trackEvent } from "@/lib/fbpixel";
 
 // ─── טקסטים — החליפי בטקסט שלך ─────────────────────────────────────────────
 
@@ -28,6 +29,7 @@ export default function LeadsPage() {
       });
       if (!res.ok) throw new Error();
       setStatus("success");
+      trackEvent("Lead", { content_name: "leads_page_signup" });
     } catch {
       setStatus("error");
     }

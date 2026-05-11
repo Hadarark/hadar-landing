@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
+import { trackEvent } from "@/lib/fbpixel";
 
 const CSS = `
   @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Caveat:wght@400;600&display=swap');
@@ -363,6 +364,7 @@ export default function MagnetPage() {
       });
       if (!res.ok) throw new Error();
       setStatus("success");
+      trackEvent("Lead", { content_name: "magnet_pdf_download" });
       const a = document.createElement("a");
       a.href = "/lead-magnet.pdf";
       a.download = "חוברת גיל הגשר - הדר ארקדש.pdf";

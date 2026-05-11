@@ -2,9 +2,16 @@
 
 import { motion } from "framer-motion";
 import { useEffect } from "react";
+import { trackEvent } from "@/lib/fbpixel";
 
 export default function ThankYouPage() {
   useEffect(() => {
+    trackEvent("Purchase", {
+      value: 299,
+      currency: "ILS",
+      content_name: "workshop_signup",
+    });
+
     const email = localStorage.getItem("registeredEmail");
     const smooveId = localStorage.getItem("smooveId");
     if (email || smooveId) {

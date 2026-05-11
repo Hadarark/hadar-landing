@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { trackEvent } from "@/lib/fbpixel";
 
 const CSS = `
   @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&family=Frank+Ruhl+Libre:wght@400;500;700;900&display=swap');
@@ -481,6 +482,7 @@ export default function ChallengePage() {
       });
       if (!res.ok) throw new Error();
       setStatus("success");
+      trackEvent("Lead", { content_name: "challenge_signup" });
     } catch {
       setStatus("error");
     }
