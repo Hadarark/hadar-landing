@@ -644,7 +644,7 @@ export default function ChallengePage() {
             <h2 className="ch-days-title">
               קוד <em>הקשר</em>
             </h2>
-            <p className="ch-days-dates">17–19 במאי</p>
+            <p className="ch-days-dates">24–26 במאי</p>
             <p className="ch-days-intro">
               כל יום, בשעה אחת מדויקת ביום, תקבלי <strong>הודעת וואטסאפ</strong> ממני —
               בדיוק ברגע שהקשר נשבר.
@@ -738,7 +738,7 @@ export default function ChallengePage() {
           variants={stagger}
         >
           <motion.div className="ch-final-kicker" variants={fadeUp} transition={{ duration: 0.6 }}>
-            מתחילים יום ראשון · 17 במאי
+            מתחילים יום ראשון · 24 במאי
           </motion.div>
           <motion.h2 className="ch-final-title" variants={fadeUp} transition={{ duration: 0.7 }}>
             רק את, אני,<br />
