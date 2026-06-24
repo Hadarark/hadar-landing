@@ -34,7 +34,7 @@ const CONTENT: Record<
     included1: { b: string; rest: string };
     included2: { b: string; rest: string };
     important1: string;
-    important2: string;
+    important2?: string;
     important4: string;
     mantra: { pre: string; hl: string; post: string };
   }
@@ -55,8 +55,6 @@ const CONTENT: Record<
     },
     important1:
       "הליווי אינו תחליף לטיפול פסיכולוגי או רגשי - אך הוא נוגע בעומקים, מתוך רגש, נוכחות והחזקה. אם יעלה צורך אחר, אכווין אותך בכנות למקום הנכון עבורך.",
-    important2:
-      'הלופ שאתם נמצאים בו לא אומר שאתם הורים רעים או שהילדים "מקולקלים" - זה דפוס שנחרש במוח ופועל על אוטומט, ואפשר לשנות אותו.',
     important4:
       "כל מה שנאמר בתהליך נשמר בסודיות מוחלטת, במרחב בטוח, בגובה העיניים ומתוך הקשבה אמיתית לקצב שלך.",
     mantra: {
@@ -252,7 +250,7 @@ export default function AgreementPage() {
           </div>
           <ul className="points">
             <li>{v.important1}</li>
-            <li>{v.important2}</li>
+            {v.important2 && <li>{v.important2}</li>}
             <li>
               אין פתרונות קסם. תהליך הוא כמו ללכת במבוך: לקחנו פנייה לא נכונה
               ונתקלנו בקיר? חוזרים ומנסים שוב.{" "}
